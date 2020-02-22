@@ -1,0 +1,9 @@
+<h2>Available courses</h2>
+<div class="grid-container">
+    <div class="head1">ID</div>
+    <div class="head2">Name</div>
+    <ng-container *ngFor="let course of courses">
+        <div class="item">{{course.id}}</div>
+        <div class="item">{{course.name}}</div>
+    </ng-container>
+</div>
