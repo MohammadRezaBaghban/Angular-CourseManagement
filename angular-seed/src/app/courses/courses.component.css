@@ -1,0 +1,7 @@
+/* CoursesComponent's private CSS styles */
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+    padding: 10px;
+  }

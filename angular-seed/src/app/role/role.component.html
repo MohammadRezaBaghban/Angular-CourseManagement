@@ -1,0 +1,19 @@
+<div>
+    <h1>Roles</h1>
+    <div>
+        <ul class="roles">
+            <li *ngFor="let role of roles" (click)="onSelect(role)" [class.selected]="role === selectedRole">
+                <span class="badge">{{role.Id}}</span>{{role.RoleName}}
+            </li>
+        </ul>
+    </div>
+
+    <div *ngIf="selectedRole">
+        Selected Role
+        <br>
+
+        <label>RoleName:
+            <input [(ngModel)]="selectedRole.RoleName" placeholder="RoleName" />
+        </label>
+    </div>
+</div>
