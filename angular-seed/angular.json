@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "angular-see": {
@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angular-see"
+    }
+  },
+  "defaultProject": "angular-see",
+  "cli": {
+    "analytics": "50685a08-18bb-4601-84c4-f5d78160f80d"
+  }
 }
