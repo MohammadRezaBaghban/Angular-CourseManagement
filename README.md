@@ -3,6 +3,7 @@ This is the Web2 repository for creating the front-end of a web-application usin
 
 # NPM Package
 Run following command in the workspace directory in order to install latest packages
+`npm install`
 
 # URL
 web2.i427065.hera.fhict.nl
