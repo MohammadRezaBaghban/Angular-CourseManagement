@@ -1,6 +1,9 @@
 # Introduction 
 This is the Web2 repository for creating the front-end of a web-application using Angular framework based on School Course Project
 
+# NPM Package
+Run following command in the workspace directory in order to install latest packages
+
 # URL
 web2.i427065.hera.fhict.nl
 
