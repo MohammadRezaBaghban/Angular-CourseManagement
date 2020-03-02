@@ -4,6 +4,15 @@
     <div class="head2">Name</div>
     <ng-container *ngFor="let course of courses">
         <div class="item">{{course.id}}</div>
-        <div class="item">{{course.name}}</div>
+        <div class="item" (click)="onSelect(course)">{{course.name}}</div>
     </ng-container>
+</div>
+<div *ngIf="selectedCourse">
+    <h2>{{selectedCourse.name | uppercase}} Details</h2>
+    <div><span>id: </span>{{selectedCourse.id}}</div>
+    <div>
+      <label>name:
+        <input [(ngModel)]="selectedCourse.name" placeholder="name"/>
+      </label>
+    </div>
 </div>
