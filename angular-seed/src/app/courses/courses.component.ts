@@ -27,4 +27,19 @@ export class CoursesComponent implements OnInit {
         .subscribe(courses => this.courses = courses);
   }
 
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    let newCourse: Course = new Course(this.courseService.genId(this.courses), name);
+    this.courses.push(newCourse);
+    /*this.courseService.addCourse({ name } as Course)
+      .subscribe(course => {
+        this.courses.push(course);
+      });*/
+  }
+
+  delete(course: Course): void {
+    this.courses.splice(this.courses.indexOf(course),1);
+    //this.courseService.deleteCourse(course).subscribe();
+  }
 }

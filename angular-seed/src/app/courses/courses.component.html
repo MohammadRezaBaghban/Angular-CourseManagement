@@ -7,6 +7,16 @@
         <div class="item" (click)="onSelect(course)">{{course.name}}</div>
     </ng-container>
 </div>
+<br><br>
+<div>
+    <label>Course name:
+      <input #courseName />
+    </label>
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button (click)="add(courseName.value); courseName.value=''">
+      add
+    </button>
+</div>
 <div *ngIf="selectedCourse">
     <h2>{{selectedCourse.name | uppercase}} Details</h2>
     <div><span>id: </span>{{selectedCourse.id}}</div>
@@ -15,4 +25,6 @@
         <input [(ngModel)]="selectedCourse.name" placeholder="name"/>
       </label>
     </div>
+    <button class="delete" title="delete course"
+            (click)="delete(selectedCourse)">Delete course</button>
 </div>
