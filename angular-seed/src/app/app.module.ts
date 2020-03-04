@@ -5,17 +5,31 @@ import { AppComponent } from './app.component';
 import { CoursesComponent } from './courses/courses.component';
 import { RoleComponent } from './role/role.component';
 import { UsersComponent } from './users/users.component';
+import { AppRoutingModule } from './app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './in-memory-data.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     CoursesComponent,
     RoleComponent,
-    UsersComponent
+    UsersComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+    // and returns simulated server responses.
+    // Remove it when a real server is ready to receive requests.
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
