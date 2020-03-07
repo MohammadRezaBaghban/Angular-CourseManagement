@@ -1,4 +1,8 @@
 <h1>{{title}}</h1>
-<app-role></app-role>
-<app-courses></app-courses>
-<app-users></app-users>
+<nav>
+    <a routerLink="/dashboard">Dashboard</a>
+    <a routerLink="/courses">Courses</a>
+    <a routerLink="/roles">Roles</a>
+    <a routerLink="/users">Users</a>
+</nav>
+<router-outlet></router-outlet>
