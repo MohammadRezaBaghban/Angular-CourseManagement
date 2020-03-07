@@ -6,9 +6,4 @@
         </li>
     </ol>
 </div>
-<div *ngIf="selectedHero">
-    Selected Hero
-    <label>Name:
-        <input [(ngModel)]="selectedHero.name" placeholder="name" />
-    </label>
-</div>
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
