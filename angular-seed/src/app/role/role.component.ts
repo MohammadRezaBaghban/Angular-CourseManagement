@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Role } from '../role';
 import { ROLES } from '../roles';
+import { RoleServiceService } from '../role-service.service';
 
 @Component({
   selector: 'app-role',
@@ -9,17 +10,39 @@ import { ROLES } from '../roles';
 })
 export class RoleComponent implements OnInit {
 
-  roles = ROLES;
+  roles: Role[];
   selectedRole: Role;
 
-  onSelect(role: Role): void {
-
-    this.selectedRole = role;
-
+  constructor(private roleService: RoleServiceService) {
   }
 
-  constructor() { }
+  getHeros(): void {
+    this.roleService.getRoles().subscribe(roles => this.roles = roles);
+  }
+
+  onSelect(role: Role): void {
+    this.selectedRole = role;
+  }
+
+  onDelete(role: Role): void {
+    this.roles.splice(this.roles.indexOf(role), 1);
+  }
+
+  AddRole(roleName: string, roleId: number): void {
+    if (!this.roles.find(role => role.Id === roleId) && !this.roles.find(role => role.RoleName === roleName)) {
+      this.roles.push(new Role(roleId, roleName));
+    } else {
+      alert("There is another role with the same name or id");
+    }
+  }
+
+  clearSelectedRole() {
+    this.selectedRole = null;
+  }
+
+
   ngOnInit(): void {
+    this.getHeros();
   }
 
 }
