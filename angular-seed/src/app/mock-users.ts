@@ -1,14 +1,14 @@
 import { User } from './user';
 
 export const USERS: User[] = [
-  { id: 11, name: 'Dr Nice' },
-  { id: 12, name: 'Narco' },
-  { id: 13, name: 'Bombasto' },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta' },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama' },
-  { id: 18, name: 'Dr IQ' },
-  { id: 19, name: 'Magma' },
-  { id: 20, name: 'Tornado' }
+  new User(1,'Dr Nice' ),
+  new User(2,'Narco' ),
+  new User(3,'Bombasto' ),
+  new User(4,'Celeritas' ),
+  new User(5,'Magneta' ),
+  new User(6,'RubberMan' ),
+  new User(7,'Dynama'),
+  new User(8,'Dr IQ' ),
+  new User(9,'Magma' ),
+  new User(10,'Tornado' )
 ];
