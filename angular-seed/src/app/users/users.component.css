@@ -1,5 +1,14 @@
 /* UsersComponent's private CSS styles */
-.users {
+@import 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
+.selectedRow:hover{
+  color: white;
+  background-color: #81017B;
+}
+.selectedRow.selected{
+  background-color: #E37BDF;
+  color: white;
+}
+/* .users {
     margin: 0 0 2em 0;
     list-style-type: none;
     padding: 0;
@@ -12,7 +21,7 @@
     background-color: #EEE;
     margin: .5em;
     padding: .3em 0;
-    height: 1.6em;
+    height: 2.4em;
     border-radius: 4px;
   }
   .users li:hover {
@@ -38,7 +47,7 @@
     position: relative;
     left: -1px;
     top: -4px;
-    height: 1.8em;
+    height: 2.8em;
     margin-right: .8em;
     border-radius: 4px 0 0 4px;
-  }
+  } */

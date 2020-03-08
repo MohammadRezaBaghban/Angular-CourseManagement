@@ -1,9 +1,14 @@
 export class User {
     id: number;
-    name: string;
-
-    constructor(id: number, name: string) {
+    role: string;
+    first_name: string;
+    last_name: string;
+    dob: string;
+    constructor(id: number, role:string, firstName:string, lastName: string, dob:string) {
       this.id = id;
-      this.name = name;
+      this.role = role;
+      this.first_name = firstName;
+      this.last_name = lastName;
+      this.dob = dob;
   }
   }
