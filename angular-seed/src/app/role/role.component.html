@@ -20,6 +20,7 @@
         <label>
             Role Id: <input #roleId>
         </label>
+
         <button title="Add Role" (click)="AddRole(roleName.value,roleId.value); roleName.value=''; roleId.value='';">
             Add Role
         </button>
@@ -33,15 +34,16 @@
             <input [(ngModel)]="selectedRole.RoleName" placeholder="RoleName" />
         </label>
         <br>
-
         <label> FTE Workload:
             <input [(ngModel)]="selectedRole.FTE" placeholder="FTE" />
         </label>
         <br>
         <br>
+
         <button title="Delete Role" (click)="onDelete(selectedRole)">
             Delete Role
         </button>
         <button (click)="clearSelectedRole()">Hide Detail Panel</button>
+
     </div>
 </div>
