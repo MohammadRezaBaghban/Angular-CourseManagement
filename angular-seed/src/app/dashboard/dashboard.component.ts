@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Course } from '../course';
-import { CourseService } from '../course.service';
+import { Course } from '../courses/course';
+import { CourseService } from '../courses/course.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
 import { Role } from '../role';

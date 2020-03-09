@@ -1,17 +1,33 @@
 <h2>Available courses</h2>
 <div class="grid-container">
-    <div class="head1">ID</div>
-    <div class="head2">Name</div>
+    <div class="head">ID</div>
+    <div class="head">Name</div>
+    <div class="head">Teachers</div>
+    <div class="line"></div>
     <ng-container *ngFor="let course of courses">
-        <div class="item">{{course.id}}</div>
+        <div class="item" (click)="onSelect(course)">{{course.id}}</div>
         <div class="item" (click)="onSelect(course)">{{course.name}}</div>
+        <div class="item" (click)="onSelect(course)">
+          <ng-container *ngFor="let teacher of course.teachers">
+            <div>{{teacher.first_name}} {{teacher.last_name}}</div>
+          </ng-container>
+        </div>
+        <div class="line"></div>
     </ng-container>
 </div>
 <br><br>
+<h2>Add new course</h2>
 <div>
     <label>Course name:
       <input #courseName />
     </label>
+    <br><br>
+    <angular2-multiselect 
+      [data]="dropdownList" 
+      [(ngModel)]="selectedItems" 
+      [settings]="dropdownSettings" >
+    </angular2-multiselect>
+    <br>
     <!-- (click) passes input value to add() and then clears the input -->
     <button (click)="add(courseName.value); courseName.value=''">
       add
