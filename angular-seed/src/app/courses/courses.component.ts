@@ -25,7 +25,6 @@ export class CoursesComponent implements OnInit {
     let teachers: User[] = this.getTeachers();
 
     teachers.forEach(element =>{
-      //this.dropdownList.push({"id":element.id,"itemName":element.first_name + " " + element.last_name});
       this.dropdownList.push(element);
       console.log(element);
     });
@@ -50,7 +49,7 @@ export class CoursesComponent implements OnInit {
     this.dropdownSettings = { 
       singleSelection: false, 
       text:"Select teachers",
-      labelKey: "first_name",
+      labelKey: "last_name",
       selectAllText:'Select All',
       unSelectAllText:'UnSelect All',
       enableSearchFilter: true
@@ -79,6 +78,7 @@ export class CoursesComponent implements OnInit {
     if (!name) { return; }
     let newCourse: Course = new Course(this.courseService.genId(this.courses), name, this.selectedItems);
     this.courses.push(newCourse);
+    this.selectedItems = [];
     /*this.courseService.addCourse({ name } as Course)
       .subscribe(course => {
         this.courses.push(course);
