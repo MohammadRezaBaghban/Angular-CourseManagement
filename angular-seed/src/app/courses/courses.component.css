@@ -1,7 +1,14 @@
 /* CoursesComponent's private CSS styles */
 .grid-container {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 10px;
-    padding: 10px;
-  }
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+  padding: 10px;
+  border: 2px solid #dfdfdf;
+}
+.line {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  height: 2px;
+  border-bottom: 1px solid #dfdfdf;
+}
