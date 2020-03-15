@@ -3,8 +3,8 @@ import { Course } from '../courses/course';
 import { CourseService } from '../courses/course.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
-import { Role } from '../role';
-import { RoleServiceService } from '../role-service.service';
+import { Role } from '../role/Dependencies/role';
+import { RoleServiceService } from '../role/Dependencies/role-service.service';
 
 @Component({
   selector: 'app-dashboard',
