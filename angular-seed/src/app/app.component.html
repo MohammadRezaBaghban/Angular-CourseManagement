@@ -1,10 +1,23 @@
-<h1>{{title}}</h1>
-<nav>
-    <a routerLink="/dashboard">Dashboard</a>
-    <a routerLink="/profiles">Profiles</a>
-    <a routerLink="/courses">Courses</a>
-    <a routerLink="/roles">Roles</a>
-    <a routerLink="/users">Users</a>
+<table align="center">
+    <tr>
+        <br><br>
+        <h1>{{title}}</h1>
+        <br>
 
-</nav>
-<router-outlet></router-outlet>
+    </tr>
+    <tr>
+        <td>
+            <nav>
+                <a routerLink="/dashboard">Dashboard</a>
+                <a routerLink="/profiles">Profiles</a>
+                <a routerLink="/courses">Courses</a>
+                <a routerLink="/roles">Roles</a>
+                <a routerLink="/users">Users</a>
+
+            </nav>
+        </td>
+    </tr>
+    <tr>
+        <router-outlet></router-outlet>
+    </tr>
+</table>
