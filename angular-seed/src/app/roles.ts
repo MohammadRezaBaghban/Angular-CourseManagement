@@ -1,9 +1,10 @@
 import { Role } from './role'
+import { Employee } from './employee';
 
-export const ROLES: Array<Role> = [
-    new Role(1, 'Teacher'),
+export let ROLES: Array<Role> = [
+    new Employee(1, 'Teacher', 1),
     new Role(2, 'Student'),
-    new Role(3, 'Mentor'),
-    new Role(4, 'CourseOwner'),
-    new Role(5, 'Administration'),
+    new Employee(3, 'Mentor', 0.5),
+    new Employee(4, 'CourseOwner', 1.2),
+    new Employee(5, 'Administration', 1.5),
 ];

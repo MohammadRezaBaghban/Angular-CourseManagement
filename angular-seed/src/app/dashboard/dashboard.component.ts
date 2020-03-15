@@ -1,31 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import { Course } from '../course';
-import { CourseService } from '../course.service';
+import { Course } from '../courses/course';
+import { CourseService } from '../courses/course.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { Role } from '../role';
+import { RoleServiceService } from '../role-service.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: [ './dashboard.component.css' ]
+  styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
   courses: Course[] = [];
   users: User[] = [];
+  roles: Role[] = [];
 
-  constructor(private courseService: CourseService, private userService: UserService) { }
+  constructor(private courseService: CourseService, private userService: UserService, private roleService: RoleServiceService) { }
 
   ngOnInit() {
-    this.getHeroes();
+    this.getRoles();
+    this.getCourses();
     this.getUsers();
   }
 
-  getHeroes(): void {
+  getRoles(): void {
+    this.roleService.getRoles()
+      .subscribe(roles => this.roles = roles.slice(1, 4));
+  }
+
+  getCourses(): void {
     this.courseService.getCourses()
       .subscribe(courses => this.courses = courses.slice(1, 5));
   }
-  getUsers(): void{
+  getUsers(): void {
     this.userService.getUsers()
-        .subscribe(users => this.users = users.slice(1,4));
+      .subscribe(users => this.users = users.slice(1, 4));
   }
 }

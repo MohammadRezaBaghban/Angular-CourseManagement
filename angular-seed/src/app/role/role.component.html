@@ -1,19 +1,49 @@
 <div>
+    <hr>
     <h1>Roles</h1>
     <div>
         <ul class="roles">
             <li *ngFor="let role of roles" (click)="onSelect(role)" [class.selected]="role === selectedRole">
-                <span class="badge">{{role.Id}}</span>{{role.RoleName}}
+                <div>
+
+                </div>
+                <span class="badge">{{role.Id}}</span>{{role.RoleName}} | FTE: {{role.FTE}}
             </li>
         </ul>
+        <hr>
     </div>
 
+    <div>
+        <label>
+            Role Name:<input #roleName>
+        </label>
+        <label>
+            Role Id: <input #roleId>
+        </label>
+
+        <button title="Add Role" (click)="AddRole(roleName.value,roleId.value); roleName.value=''; roleId.value='';">
+            Add Role
+        </button>
+        <hr>
+    </div>
     <div *ngIf="selectedRole">
-        Selected Role
+        <h2>Selected Role</h2>
         <br>
 
-        <label>RoleName:
+        <label> RoleName:
             <input [(ngModel)]="selectedRole.RoleName" placeholder="RoleName" />
         </label>
+        <br>
+        <label> FTE Workload:
+            <input [(ngModel)]="selectedRole.FTE" placeholder="FTE" />
+        </label>
+        <br>
+        <br>
+
+        <button title="Delete Role" (click)="onDelete(selectedRole)">
+            Delete Role
+        </button>
+        <button (click)="clearSelectedRole()">Hide Detail Panel</button>
+
     </div>
 </div>
