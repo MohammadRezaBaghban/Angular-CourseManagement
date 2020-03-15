@@ -1,43 +1,105 @@
-<div>
-  <h3>Recently added/updated courses</h3>
-  <div class="grid grid-pad">
-    <a *ngFor="let course of courses" class="col-1-4">
-      <div class="module course">
-        <h4>{{course.name}}</h4>
-      </div>
-    </a>
-  </div>
-</div>
-<br><br><br><br>
-<div>
-  <h3>Recently added/updated Roles</h3>
-  <div class="grid grid-pad">
-    <a *ngFor="let role of roles" class="col-1-4">
-      <div class="module role">
-        <h4>{{role.RoleName}}</h4>
-      </div>
-    </a>
-  </div>
-</div>
-<br><br><br><br>
-<div>
-  <h3>Recently added/updated users</h3>
-  <div class="grid grid-pad">
-    <a *ngFor="let user of users" class="col-1-4">
-      <div class="module user">
-        <h4>{{user.first_name}}{{user.last_name}}</h4>
-      </div>
-    </a>
-  </div>
-</div>
-<br><br><br><br>
-<div>
-  <h3>Recently added/updated profiles</h3>
-  <div class="grid grid-pad">
-    <a *ngFor="let profile of profiles" class="col-1-4">
-      <div class="module profile">
-        <h4>{{profile.profileAbbreviation}} - {{profile.profileName}}</h4>
-      </div>
-    </a>
-  </div>
+<table align="center">
+
+  <tr align="center" class="grid grid-pad">
+    <table align="center" class="table table-bordered table-dark">
+      <tr align="center">
+        <td colspan="4">
+          <h1>Recently Added / Updated</h1>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <table>
+            <tr align="center">
+              <h3>Profiles</h3>
+            </tr>
+            <tr *ngFor="let profile of profiles">
+              <td align="center">
+                <div>
+                  <div>
+                    <a>
+                      <div class="module profile">
+                        <h4>{{profile.profileAbbreviation}} - {{profile.profileName}}</h4>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <table>
+            <tr align="center">
+              <h3>Courses</h3>
+            </tr>
+            <tr *ngFor="let course of courses">
+              <td align="center">
+                <div>
+                  <div>
+                    <a>
+                      <div class="module course">
+                        <h4>{{course.name}}</h4>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <table>
+            <tr align="center">
+              <h3>Users</h3>
+            </tr>
+            <tr *ngFor="let user of users">
+              <td align="center">
+                <div>
+                  <div>
+                    <a>
+                      <div class="module user">
+                        <h4>{{user.first_name}}{{user.last_name}}</h4>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <table>
+            <tr align="center">
+              <h3>Roles</h3>
+            </tr>
+            <tr *ngFor="let role of roles">
+              <td align="center">
+                <div>
+                  <div>
+                    <a>
+                      <div class="module role">
+                        <h4>{{role.RoleName}}</h4>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </tr>
+</table>
+
+<div align="center">
+
+  <br><br><br><br>
+
+  <br><br><br><br>
+
+  <br><br><br><br>
+
+  <br><br><br><br>
 </div>
