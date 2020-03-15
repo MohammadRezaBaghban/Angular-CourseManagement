@@ -6,7 +6,7 @@ export class Profile {
 
     profileName: string;
     profileAbbreviation: string;
-    containingCourse: Array<Course>;
+    containingCourse: Array<Course> = [];
     profileOwner: User;
 
 
@@ -14,6 +14,7 @@ export class Profile {
         this.profileName = name;
         this.profileAbbreviation = abbreviation;
         this.profileOwner = owner;
+
     }
 
     public ContainCourse(course: Course): boolean {
