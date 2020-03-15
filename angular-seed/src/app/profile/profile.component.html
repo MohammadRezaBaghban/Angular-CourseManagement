@@ -1,1 +1,39 @@
-<p>profile works!</p>
+<div>
+    <hr>
+    <h1>Profiles</h1>
+    <div>
+        <ul class="profiles">
+            <li *ngFor="let profile of profiles" (click)="onSelect(profile)"
+                [class.selected]="profile === selectedProfile">
+                <div>
+
+                </div>
+                <span class="badge">{{profile.profileAbbreviation}}</span>{{profile.profileName}}
+            </li>
+        </ul>
+        <hr>
+    </div>
+
+
+    <div *ngIf="selectedProfile">
+        <h2>Selected Profile</h2>
+        <br>
+
+        <label> Abbreviation:
+            <input [(ngModel)]="selectedProfile.profileAbbreviation" placeholder="profileAbbreviation" />
+        </label>
+        <label> ProfileName:
+            <input [(ngModel)]="selectedProfile.profileName" placeholder="profileName" />
+        </label>
+        <br>
+
+        <br>
+        <br>
+
+        <button title="Delete Profile" (click)="onDelete(selectedProfile)">
+            Delete Role
+        </button>
+        <button (click)="clearSelectedProfile()">Hide Detail Panel</button>
+
+    </div>
+</div>

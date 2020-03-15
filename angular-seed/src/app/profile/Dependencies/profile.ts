@@ -1,15 +1,16 @@
 import { Course } from 'src/app/courses/course';
 import { Employee } from 'src/app/role/Dependencies/employee';
+import { User } from 'src/app/user';
 
 export class Profile {
 
-    readonly profileName: string;
-    readonly profileAbbreviation: string;
-    private containingCourse: Array<Course>;
-    private profileOwner: Employee;
+    profileName: string;
+    profileAbbreviation: string;
+    containingCourse: Array<Course>;
+    profileOwner: User;
 
 
-    constructor(name: string, abbreviation: string, owner: Employee) {
+    constructor(name: string, abbreviation: string, owner: User) {
         this.profileName = name;
         this.profileAbbreviation = abbreviation;
         this.profileOwner = owner;

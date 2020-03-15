@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Profile } from './Dependencies/profile';
+import { ProfileServiceService } from './Dependencies/profile-service.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  profiles: Array<Profile>;
+  selectedProfile: Profile;
+
+  constructor(private profileService: ProfileServiceService) {
+
+  }
+
+  getProfiles(): void {
+    this.profileService.getProfiles().subscribe(profiles => this.profiles = profiles);
+  }
+
+  onSelect(profile: Profile): void {
+    this.selectedProfile = profile;
+  }
+
+  onDelete(profile: Profile): void {
+    this.profiles.splice(this.profiles.indexOf(profile), 1);
+  }
+
+  clearSelectedProfile() {
+    this.selectedProfile = null;
+  }
+
 
   ngOnInit(): void {
+    this.getProfiles();
   }
 
 }
