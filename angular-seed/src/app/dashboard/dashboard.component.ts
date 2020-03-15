@@ -3,8 +3,10 @@ import { Course } from '../courses/course';
 import { CourseService } from '../courses/course.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
-import { Role } from '../role';
-import { RoleServiceService } from '../role-service.service';
+import { Role } from '../role/Dependencies/role';
+import { RoleServiceService } from '../role/Dependencies/role-service.service';
+import { Profile } from '../profile/Dependencies/profile';
+import { ProfileServiceService } from '../profile/Dependencies/profile-service.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,13 +17,19 @@ export class DashboardComponent implements OnInit {
   courses: Course[] = [];
   users: User[] = [];
   roles: Role[] = [];
+  profiles: Profile[] = [];
 
-  constructor(private courseService: CourseService, private userService: UserService, private roleService: RoleServiceService) { }
+  constructor(private courseService: CourseService,
+    private userService: UserService,
+    private roleService: RoleServiceService,
+    private profileService: ProfileServiceService
+  ) { }
 
   ngOnInit() {
     this.getRoles();
     this.getCourses();
     this.getUsers();
+    this.getProfiles();
   }
 
   getRoles(): void {
@@ -36,5 +44,10 @@ export class DashboardComponent implements OnInit {
   getUsers(): void {
     this.userService.getUsers()
       .subscribe(users => this.users = users.slice(1, 4));
+  }
+
+  getProfiles(): void {
+    this.profileService.getProfiles()
+      .subscribe(profiles => this.profiles = profiles.slice(0, 3));
   }
 }

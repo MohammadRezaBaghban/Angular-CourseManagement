@@ -30,3 +30,14 @@
     </a>
   </div>
 </div>
+<br><br><br><br>
+<div>
+  <h3>Recently added/updated profiles</h3>
+  <div class="grid grid-pad">
+    <a *ngFor="let profile of profiles" class="col-1-4">
+      <div class="module profile">
+        <h4>{{profile.profileAbbreviation}} - {{profile.profileName}}</h4>
+      </div>
+    </a>
+  </div>
+</div>
