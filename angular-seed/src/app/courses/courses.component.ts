@@ -3,6 +3,8 @@ import { Course } from './course';
 import { CourseService } from './course.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { Profile } from '../profile/Dependencies/profile';
+import { ProfileServiceService } from '../profile/Dependencies/profile-service.service';
 
 @Component({
   selector: 'app-courses',
@@ -17,17 +19,27 @@ export class CoursesComponent implements OnInit {
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
+
+  profilesDropdownList = [];
+  profilesDropdownSelected = [];
+  profilesDropdownSettings = {};
   
-  constructor(private courseService: CourseService, private userService: UserService) { }
+  constructor(private courseService: CourseService, private userService: UserService, private profileService: ProfileServiceService) { }
 
   ngOnInit(): void {
     this.getCourses();
     let teachers: User[] = this.getTeachers();
+    let profiles: Profile[] = this.getProfiles();
 
     teachers.forEach(element =>{
       this.dropdownList.push(element);
-      console.log(element);
     });
+
+    profiles.forEach(element => {
+      this.profilesDropdownList.push(element);
+      //console.log(element);
+    });
+
     /*this.dropdownList = [
       {"id":1,"itemName":"India"},
       {"id":2,"itemName":"Singapore"},
@@ -46,10 +58,21 @@ export class CoursesComponent implements OnInit {
       {"id":4,"itemName":"Canada"},
       {"id":5,"itemName":"South Korea"}
     ];*/
+
     this.dropdownSettings = { 
       singleSelection: false, 
       text:"Select teachers",
       labelKey: "last_name",
+      selectAllText:'Select All',
+      unSelectAllText:'UnSelect All',
+      enableSearchFilter: true
+    };
+
+    this.profilesDropdownSettings = { 
+      singleSelection: false, 
+      text:"Select profiles",
+      labelKey: "profileName",
+      primaryKey: "profileName",
       selectAllText:'Select All',
       unSelectAllText:'UnSelect All',
       enableSearchFilter: true
@@ -73,12 +96,23 @@ export class CoursesComponent implements OnInit {
     return usersList.filter(u => u.role == 'teacher');
   }
 
+  getProfiles(): Profile[] {
+      let profileList: Profile[];
+      this.profileService.getProfiles()
+          .subscribe(profiles => profileList = profiles);
+
+      return profileList;
+  }
+
   add(name: string): void {
     name = name.trim();
     if (!name) { return; }
-    let newCourse: Course = new Course(this.courseService.genId(this.courses), name, this.selectedItems);
+    let newCourse: Course = new Course(this.courseService.genId(this.courses), name, this.selectedItems, this.profilesDropdownSelected);
     this.courses.push(newCourse);
+    //TODO: add the course to the profile
     this.selectedItems = [];
+    this.profilesDropdownSelected = [];
+
     /*this.courseService.addCourse({ name } as Course)
       .subscribe(course => {
         this.courses.push(course);

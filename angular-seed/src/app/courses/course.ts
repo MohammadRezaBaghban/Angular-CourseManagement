@@ -1,15 +1,17 @@
 import { User } from '../user';
+import { Profile } from '../profile/Dependencies/profile';
 
 export class Course {
     id: number;
     name: string;
     teachers: User[];
     //students: User[];
-    //profiles: Profiler;
+    profiles: Profile[];
     
-    constructor(id: number, name: string, teachers: User[]) {
+    constructor(id: number, name: string, teachers: User[], profiles: Profile[]) {
         this.id = id;
         this.name = name;
         this.teachers = teachers;
+        this.profiles = profiles;
     }
 }
