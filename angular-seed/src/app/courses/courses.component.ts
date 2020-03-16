@@ -14,6 +14,7 @@ import { ProfileServiceService } from '../profile/Dependencies/profile-service.s
 export class CoursesComponent implements OnInit {
 
   courses: Course[];
+  displayCourses: Course[];
   selectedCourse: Course;
 
   dropdownList = [];
@@ -28,6 +29,7 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCourses();
+    this.displayCourses = this.courses;
     let teachers: User[] = this.getTeachers();
     let profiles: Profile[] = this.getProfiles();
 
@@ -39,25 +41,6 @@ export class CoursesComponent implements OnInit {
       this.profilesDropdownList.push(element);
       //console.log(element);
     });
-
-    /*this.dropdownList = [
-      {"id":1,"itemName":"India"},
-      {"id":2,"itemName":"Singapore"},
-      {"id":3,"itemName":"Australia"},
-      {"id":4,"itemName":"Canada"},
-      {"id":5,"itemName":"South Korea"},
-      {"id":6,"itemName":"Germany"},
-      {"id":7,"itemName":"France"},
-      {"id":8,"itemName":"Russia"},
-      {"id":9,"itemName":"Italy"},
-      {"id":10,"itemName":"Sweden"}
-    ];
-    this.selectedItems = [
-      {"id":2,"itemName":"Singapore"},
-      {"id":3,"itemName":"Australia"},
-      {"id":4,"itemName":"Canada"},
-      {"id":5,"itemName":"South Korea"}
-    ];*/
 
     this.dropdownSettings = { 
       singleSelection: false, 
@@ -81,6 +64,16 @@ export class CoursesComponent implements OnInit {
 
   onSelect(course: Course): void {
     this.selectedCourse = course;
+  }
+
+  search(term: string): void {
+    if(term.length != 0)
+    {
+      this.displayCourses = this.courses.filter(
+            course => course.name.toUpperCase().startsWith(term.toUpperCase()));
+    }
+    else
+      this.displayCourses = this.courses;
   }
 
   getCourses(): void {
@@ -109,7 +102,11 @@ export class CoursesComponent implements OnInit {
     if (!name) { return; }
     let newCourse: Course = new Course(this.courseService.genId(this.courses), name, this.selectedItems, this.profilesDropdownSelected);
     this.courses.push(newCourse);
-    //TODO: add the course to the profile
+    //add the course to the profile
+    this.profilesDropdownSelected.forEach(element => {
+      (element as Profile).AddCourse(newCourse);
+    });
+
     this.selectedItems = [];
     this.profilesDropdownSelected = [];
 
@@ -117,6 +114,12 @@ export class CoursesComponent implements OnInit {
       .subscribe(course => {
         this.courses.push(course);
       });*/
+  }
+
+  update(course: Course): void {
+    
+    /*this.courseService.updateCourse(course)
+     .subscribe(() => this.goBack());*/
   }
 
   delete(course: Course): void {
