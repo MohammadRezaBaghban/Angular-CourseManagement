@@ -1,5 +1,5 @@
 <h2>Available courses</h2>
-<h4><label for="search-box">Hero Search</label></h4>
+<h4><label for="search-box">Course Name Search</label></h4>
 <input #searchBox id="search-box" (input)="search(searchBox.value)" />
 <br><br>
 <div class="grid-container">
@@ -55,10 +55,33 @@
 </div>
 <div *ngIf="selectedCourse">
     <h2>{{selectedCourse.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{selectedCourse.id}}</div>
+    <div><span>ID: </span>{{selectedCourse.id}}</div>
     <div>
-      <label>name:
-        <input [(ngModel)]="selectedCourse.name" placeholder="name"/>
+      <label>Name:
+        <input placeholder="name" [(ngModel)]="updateName"/>
+      </label>
+    </div>
+    <div>
+      <label>Teachers:
+        <angular2-multiselect 
+          [data]="dropdownList" 
+          [(ngModel)]="updateSelectedItems" 
+          [settings]="dropdownSettings" >
+          <c-item>
+            <ng-template let-item="item">
+              <label>{{item.first_name}} {{item.last_name}}</label>
+            </ng-template>
+          </c-item>  
+        </angular2-multiselect>
+      </label>
+    </div>
+    <div>
+      <label>Profiles:
+        <angular2-multiselect 
+          [data]="profilesDropdownList" 
+          [(ngModel)]="updateprofilesDropdownSelected" 
+          [settings]="profilesDropdownSettings" >
+        </angular2-multiselect>
       </label>
     </div>
     <button class="delete" title="Update"

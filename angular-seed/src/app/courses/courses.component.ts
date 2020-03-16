@@ -5,6 +5,7 @@ import { User } from '../user';
 import { UserService } from '../user.service';
 import { Profile } from '../profile/Dependencies/profile';
 import { ProfileServiceService } from '../profile/Dependencies/profile-service.service';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-courses',
@@ -24,6 +25,10 @@ export class CoursesComponent implements OnInit {
   profilesDropdownList = [];
   profilesDropdownSelected = [];
   profilesDropdownSettings = {};
+
+  updateSelectedItems =[];
+  updateprofilesDropdownSelected = [];
+  updateName: string;
   
   constructor(private courseService: CourseService, private userService: UserService, private profileService: ProfileServiceService) { }
 
@@ -64,6 +69,18 @@ export class CoursesComponent implements OnInit {
 
   onSelect(course: Course): void {
     this.selectedCourse = course;
+    this.updateSelectedItems = [];
+    this.updateprofilesDropdownSelected = [];
+
+    this.updateName = course.name;
+
+    course.teachers.forEach(element => {
+      this.updateSelectedItems.push(element);
+    });
+
+    course.profiles.forEach(element => {
+      this.updateprofilesDropdownSelected.push(element);
+    });
   }
 
   search(term: string): void {
@@ -117,7 +134,13 @@ export class CoursesComponent implements OnInit {
   }
 
   update(course: Course): void {
-    
+    let courseToUpdate = this.courses.find(element => element.id == course.id);
+    courseToUpdate.name = this.updateName;
+    courseToUpdate.teachers = this.updateSelectedItems;
+    courseToUpdate.profiles = this.updateprofilesDropdownSelected;
+
+    //TODO: update the profile when changes are applied to the course.profile.
+
     /*this.courseService.updateCourse(course)
      .subscribe(() => this.goBack());*/
   }
