@@ -1,4 +1,4 @@
-import { User } from './user';
+import { User } from './users/Dependencies/user';
 
 export const USERS: User[] = [
   new User(1,'teacher', 'Mario ','Cruiser','20-05-1980' ),

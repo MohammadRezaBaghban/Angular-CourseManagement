@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from './course';
 import { CourseService } from './course.service';
-import { User } from '../user';
-import { UserService } from '../user.service';
+import { User } from '../users/Dependencies/user';
+import { UserService } from '../users/Dependencies/user.service';
 
 @Component({
   selector: 'app-courses',

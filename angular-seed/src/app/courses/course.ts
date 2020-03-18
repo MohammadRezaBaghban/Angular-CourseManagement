@@ -1,4 +1,4 @@
-import { User } from '../user';
+import { User } from '../users/Dependencies/user';
 
 export class Course {
     id: number;

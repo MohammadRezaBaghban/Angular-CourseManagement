@@ -1,6 +1,6 @@
 import { Course } from 'src/app/courses/course';
 import { Employee } from 'src/app/role/Dependencies/employee';
-import { User } from 'src/app/user';
+import { User } from 'src/app/users/Dependencies/user';
 
 export class Profile {
 

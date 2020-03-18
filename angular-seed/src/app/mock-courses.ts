@@ -1,5 +1,5 @@
 import { Course } from './courses/course';
-import { User } from './user';
+import { User } from './users/Dependencies/user';
 
 export const COURSES: Course[] = [
   new Course(1, 'WEB2', [new User (100,'teacher','Mario','Cruiser','20-05-1980'), new User (102,'teacher','Brock','Lee','20-05-1980')]),
