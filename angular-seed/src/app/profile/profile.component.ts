@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
   profiles: Array<Profile>;
   courses: Array<Course>;
   selectedProfile: Profile;
+  fetchData: boolean = false;
 
   constructor(private profileService: ProfileServiceService, private courseService: CourseService) {
 
@@ -22,11 +23,24 @@ export class ProfileComponent implements OnInit {
   getProfiles(): void {
     this.profileService.getProfiles().subscribe(profiles => this.profiles = profiles);
     this.courseService.getCourses().subscribe(courses => this.courses = courses);
-    this.profiles[0].containingCourse.push(this.courses[0]);
-    this.profiles[0].containingCourse.push(this.courses[2]);
-    this.profiles[0].containingCourse.push(this.courses[3]);
-    this.profiles[1].containingCourse.push(this.courses[1]);
 
+    this.courses.forEach(element => {
+      element.profiles.forEach(profile => {
+        this.addCourseToProfile(element, profile);
+      })
+    });
+
+
+  }
+
+  private addCourseToProfile(course: Course, profile: Profile) {
+
+    let currentProfile = this.profiles.find(p => p.profileName == profile.profileName);
+    if (currentProfile != undefined) {
+      currentProfile.AddCourse(course);
+    } else {
+      new Error("There is no such a profile in profiles list");
+    }
 
   }
 
@@ -44,7 +58,11 @@ export class ProfileComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getProfiles();
+    if (!this.fetchData) {
+      this.getProfiles();
+      this.fetchData = true;
+    }
+
   }
 
 }

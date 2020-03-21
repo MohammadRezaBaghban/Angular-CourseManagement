@@ -24,6 +24,13 @@ export class CourseService {
       catchError(this.handleError<Hero>('addHero'))
     );
   }
+  
+  updateCourse (course: Course): Observable<any> {
+    return this.http.put(this.heroesUrl, course, this.httpOptions).pipe(
+      tap(_ => this.log(`updated hero id=${course.id}`)),
+      catchError(this.handleError<any>('updateHero'))
+    );
+  }
 
   deleteCourse (course: Course | number): Observable<Course> {
     const id = typeof course === 'number' ? course : course.id;
