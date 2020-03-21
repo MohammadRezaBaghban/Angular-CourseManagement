@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Course } from '../courses/course';
-import { CourseService } from '../courses/course.service';
-import { User } from '../users/Dependencies/user';
-import { UserService } from '../users/Dependencies/user.service';
-import { Role } from '../role/Dependencies/role';
-import { RoleServiceService } from '../role/Dependencies/role-service.service';
-import { Profile } from '../profile/Dependencies/profile';
-import { ProfileServiceService } from '../profile/Dependencies/profile-service.service';
+import { Course } from '../Modules/course';
+import { CourseService } from '../Modules/Services/course.service';
+import { User } from '../Modules/user';
+import { UserService } from '../Modules/Services/user.service';
+import { Role } from '../Modules/role';
+import { RoleServiceService } from '../Modules/Services/role-service.service';
+import { Profile } from '../Modules/profile';
+import { ProfileServiceService } from '../Modules/Services/profile-service.service';
 
 @Component({
   selector: 'app-dashboard',

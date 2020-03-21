@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Profile } from './Dependencies/profile';
-import { ProfileServiceService } from './Dependencies/profile-service.service';
-import { Course } from '../courses/course';
-import { CourseService } from '../courses/course.service';
+import { Profile } from '../Modules/profile';
+import { ProfileServiceService } from '../Modules/Services/profile-service.service';
+import { Course } from '../Modules/course';
+import { CourseService } from '../Modules/Services/course.service';
 
 @Component({
   selector: 'app-profile',

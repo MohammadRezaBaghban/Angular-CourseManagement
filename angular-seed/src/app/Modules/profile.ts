@@ -1,6 +1,6 @@
-import { Course } from 'src/app/courses/course';
-import { Employee } from 'src/app/role/Dependencies/employee';
-import { User } from 'src/app/users/Dependencies/user';
+import { Course } from 'src/app/Modules/course';
+import { Employee } from 'src/app/Modules/employee';
+import { User } from 'src/app/Modules/user';
 
 export class Profile {
 

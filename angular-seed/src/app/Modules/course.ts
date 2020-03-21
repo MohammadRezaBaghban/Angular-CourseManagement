@@ -1,5 +1,5 @@
-import { User } from '../users/Dependencies/user';
-import { Profile } from '../profile/Dependencies/profile';
+import { User } from './user';
+import { Profile } from './profile';
 
 export class Course {
     id: number;

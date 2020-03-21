@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Role } from './role';
-import { ROLES } from './roles';
+import { Role } from '../role';
+import { ROLES } from '../roles';
 import { Observable, of } from 'rxjs';
 
 @Injectable({

@@ -1,5 +1,5 @@
 import { Profile } from './profile';
-import { User } from 'src/app/users/Dependencies/user';
+import { User } from 'src/app/Modules/user';
 
 export let Profiles: Array<Profile> = [
     new Profile('Software Engineering', 'S', new User(101, 'CourseOwner', "Mike", "Nebreska", '14-11-1985')),
