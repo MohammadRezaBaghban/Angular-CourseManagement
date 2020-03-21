@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Course } from '../Modules/course';
-import { CourseService } from '../Modules/Services/course.service';
-import { User } from '../Modules/user';
-import { UserService } from '../Modules/Services/user.service';
-import { Profile } from '../Modules/profile';
-import { ProfileServiceService } from '../Modules/Services/profile-service.service';
+import { Course } from '../../Modules/course';
+import { CourseService } from '../../Modules/Services/course.service';
+import { User } from '../../Modules/user';
+import { UserService } from '../../Modules/Services/user.service';
+import { Profile } from '../../Modules/profile';
+import { ProfileServiceService } from '../../Modules/Services/profile-service.service';
 import { element } from 'protractor';
 
 @Component({

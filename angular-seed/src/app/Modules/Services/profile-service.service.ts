@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Profile } from '../profile';
-import { Profiles } from '../profiles';
+import { Profiles } from '../Mock_Objects/mock-profiles';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
