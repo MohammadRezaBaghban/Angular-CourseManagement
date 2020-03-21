@@ -1,15 +1,24 @@
 <h2>Available courses</h2>
+<h4><label for="search-box">Course Name Search</label></h4>
+<input #searchBox id="search-box" (input)="search(searchBox.value)" />
+<br><br>
 <div class="grid-container">
     <div class="head">ID</div>
     <div class="head">Name</div>
     <div class="head">Teachers</div>
+    <div class="head">Profiles</div>
     <div class="line"></div>
-    <ng-container *ngFor="let course of courses">
+    <ng-container *ngFor="let course of displayCourses">
         <div class="item" (click)="onSelect(course)">{{course.id}}</div>
         <div class="item" (click)="onSelect(course)">{{course.name}}</div>
         <div class="item" (click)="onSelect(course)">
           <ng-container *ngFor="let teacher of course.teachers">
             <div>{{teacher.first_name}} {{teacher.last_name}}</div>
+          </ng-container>
+        </div>
+        <div class="item" (click)="onSelect(course)">
+          <ng-container *ngFor="let profile of course.profiles">
+            <div>{{profile.profileName}}</div>
           </ng-container>
         </div>
         <div class="line"></div>
@@ -33,6 +42,12 @@
       </c-item>  
     </angular2-multiselect>
     <br>
+    <angular2-multiselect 
+      [data]="profilesDropdownList" 
+      [(ngModel)]="profilesDropdownSelected" 
+      [settings]="profilesDropdownSettings" >
+    </angular2-multiselect>
+    <br>
     <!-- (click) passes input value to add() and then clears the input -->
     <button (click)="add(courseName.value); courseName.value=''">
       add
@@ -40,12 +55,37 @@
 </div>
 <div *ngIf="selectedCourse">
     <h2>{{selectedCourse.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{selectedCourse.id}}</div>
+    <div><span>ID: </span>{{selectedCourse.id}}</div>
     <div>
-      <label>name:
-        <input [(ngModel)]="selectedCourse.name" placeholder="name"/>
+      <label>Name:
+        <input placeholder="name" [(ngModel)]="updateName"/>
       </label>
     </div>
+    <div>
+      <label>Teachers:
+        <angular2-multiselect 
+          [data]="dropdownList" 
+          [(ngModel)]="updateSelectedItems" 
+          [settings]="dropdownSettings" >
+          <c-item>
+            <ng-template let-item="item">
+              <label>{{item.first_name}} {{item.last_name}}</label>
+            </ng-template>
+          </c-item>  
+        </angular2-multiselect>
+      </label>
+    </div>
+    <div>
+      <label>Profiles:
+        <angular2-multiselect 
+          [data]="profilesDropdownList" 
+          [(ngModel)]="updateprofilesDropdownSelected" 
+          [settings]="profilesDropdownSettings" >
+        </angular2-multiselect>
+      </label>
+    </div>
+    <button class="delete" title="Update"
+            (click)="update(selectedCourse)">Update</button>
     <button class="delete" title="delete course"
             (click)="delete(selectedCourse)">Delete course</button>
 </div>
