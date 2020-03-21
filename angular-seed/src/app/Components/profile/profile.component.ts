@@ -48,9 +48,7 @@ export class ProfileComponent implements OnInit {
     this.selectedProfile = profile;
   }
 
-  onDelete(profile: Profile): void {
-    this.profiles.splice(this.profiles.indexOf(profile), 1);
-  }
+
 
   clearSelectedProfile() {
     this.selectedProfile = null;

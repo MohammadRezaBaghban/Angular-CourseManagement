@@ -10,6 +10,7 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { ProfileComponent } from './Components/profile/profile.component';
+import { ProfileDetailComponent } from './Components/profile/profile-detail/profile-detail.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ProfileComponent } from './Components/profile/profile.component';
     RoleComponent,
     UsersComponent,
     DashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProfileDetailComponent
   ],
   imports: [
     BrowserModule,
