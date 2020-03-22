@@ -1,5 +1,4 @@
 import {Role} from './role';
-import { Employee } from './employee';
 
 export class User {
   id: number;
