@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { ProfileComponent } from './Components/profile/profile.component';
 import { ProfileDetailComponent } from './Components/profile/profile-detail/profile-detail.component';
+import { RoleDetailComponent } from './Components/role/role-detail/role-detail.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProfileDetailComponent } from './Components/profile/profile-detail/prof
     UsersComponent,
     DashboardComponent,
     ProfileComponent,
-    ProfileDetailComponent
+    ProfileDetailComponent,
+    RoleDetailComponent
   ],
   imports: [
     BrowserModule,

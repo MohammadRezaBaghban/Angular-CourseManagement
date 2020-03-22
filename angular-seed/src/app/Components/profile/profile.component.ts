@@ -49,12 +49,6 @@ export class ProfileComponent implements OnInit {
   }
 
 
-
-  clearSelectedProfile() {
-    this.selectedProfile = null;
-  }
-
-
   ngOnInit(): void {
     if (!this.fetchData) {
       this.getProfiles();

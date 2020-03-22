@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { Role } from '../../Modules/role';
 import { RoleServiceService } from '../../Modules/Services/role-service.service';
 
@@ -12,8 +12,6 @@ export class RoleComponent implements OnInit {
   roles: Array<Role>;
   selectedRole: Role;
 
-
-
   constructor(private roleService: RoleServiceService) {
   }
 
@@ -26,10 +24,6 @@ export class RoleComponent implements OnInit {
     this.selectedRole = role;
   }
 
-  onDelete(role: Role): void {
-    this.roles.splice(this.roles.indexOf(role), 1);
-  }
-
   AddRole(roleName: string, roleId: number): void {
     if (!this.roles.find(role => role.Id === roleId) && !this.roles.find(role => role.RoleName === roleName)) {
       this.roles.push(new Role(roleId, roleName));
@@ -38,9 +32,7 @@ export class RoleComponent implements OnInit {
     }
   }
 
-  clearSelectedRole() {
-    this.selectedRole = null;
-  }
+
 
 
   ngOnInit(): void {

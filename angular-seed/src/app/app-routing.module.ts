@@ -5,6 +5,7 @@ import { CoursesComponent } from './Components/courses/courses.component';
 import { RoleComponent } from './Components/role/role.component';
 import { UsersComponent } from './Components/users/users.component';
 import { ProfileComponent } from './Components/profile/profile.component';
+import { ProfileDetailComponent } from './Components/profile/profile-detail/profile-detail.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'courses', component: CoursesComponent },
   { path: 'roles', component: RoleComponent },
   { path: 'users', component: UsersComponent },
-  { path: 'profiles', component: ProfileComponent }
+  { path: 'profiles', component: ProfileComponent },
+  { path: 'detail/:id', component: ProfileDetailComponent },
 ];
 
 @NgModule({

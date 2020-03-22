@@ -26,24 +26,5 @@
         </button>
         <hr>
     </div>
-    <div *ngIf="selectedRole">
-        <h2>Selected Role</h2>
-        <br>
-
-        <label> RoleName:
-            <input [(ngModel)]="selectedRole.RoleName" placeholder="RoleName" />
-        </label>
-        <br>
-        <label> FTE Workload:
-            <input [(ngModel)]="selectedRole.FTE" placeholder="FTE" />
-        </label>
-        <br>
-        <br>
-
-        <button title="Delete Role" (click)="onDelete(selectedRole)">
-            Delete Role
-        </button>
-        <button (click)="clearSelectedRole()">Hide Detail Panel</button>
-
-    </div>
+    <app-role-detail [selectedRole]="selectedRole" [roles]="roles"></app-role-detail>
 </div>

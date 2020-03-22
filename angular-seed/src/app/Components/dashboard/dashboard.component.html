@@ -2,19 +2,17 @@
 
   <tr align="center" class="grid grid-pad">
     <table align="center" class="table table-bordered table-dark">
-      <tr align="center">
-        <td colspan="4">
-          <h1>Recently Added / Updated</h1>
-        </td>
-      </tr>
+      <th colspan="4">
+        <h1 align="center">Recently Added / Updated</h1>
+      </th>
       <tr>
         <td>
           <table>
             <tr align="center">
               <h3>Profiles</h3>
             </tr>
-            <tr *ngFor="let profile of profiles">
-              <td align="center">
+            <tr *ngFor="let profile of profiles" routerLink="/detail/{{profile.id}}">
+              <td align="center" (click)="onProfileSelect(profile)">
                 <div>
                   <div>
                     <a>
@@ -90,6 +88,11 @@
         </td>
       </tr>
     </table>
+  </tr>
+  <tr>
+    <td *ngIf="selectedProfile">
+      <app-profile-detail [selectedProfile]="selectedProfile" [profiles]="profiles"></app-profile-detail>
+    </td>
   </tr>
 </table>
 
