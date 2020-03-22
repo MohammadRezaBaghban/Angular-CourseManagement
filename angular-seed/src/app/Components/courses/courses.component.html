@@ -1,8 +1,10 @@
 <div class="container">
   <h2>Available courses</h2>
+  <hr>
   <h4><label for="search-box">Course Name Search</label></h4>
   <input #searchBox id="search-box" (input)="search(searchBox.value)" />
   <br><br>
+  <hr>
   <div class="table-responsive">
       <!-- <div class="head">ID</div>
       <div class="head">Name</div>
@@ -42,6 +44,7 @@
       </table>
   </div>
   <br><br>
+  <hr>
   <h2>Add new course</h2>
   <div>
       <label>Course name:
@@ -70,6 +73,7 @@
         add
       </button>
   </div>
+  <hr>
   <div *ngIf="selectedCourse">
       <h2>{{selectedCourse.name | uppercase}} Details</h2>
       <div><span>ID: </span>{{selectedCourse.id}}</div>

@@ -1,18 +1,19 @@
 <div class="container">
-    <hr>
     <h1>Roles</h1>
-    <div>
-        <ul class="roles">
-            <li *ngFor="let role of roles" (click)="onSelect(role)" [class.selected]="role === selectedRole">
-                <div>
-
-                </div>
-                <span class="badge">{{role.Id}}</span>{{role.RoleName}} | FTE: {{role.FTE}}
-            </li>
-        </ul>
-        <hr>
+    <div class="table-responsive">
+        <table class="table table-bordered table-dark">
+            <tr>
+                <th scope="col">Role ID</th>
+                <th scope="col">Role Name | FTE</th>
+            </tr>
+          <tr class="selectedRow" *ngFor="let role of roles" [class.selected]="role=== selectedRole"
+            (click)="onSelect(role)">
+            <th scope="row">{{role.Id}}</th>
+            <td>{{role.RoleName}} | FTE: {{role.FTE}}</td>
+          </tr>
+        </table>
     </div>
-
+    <hr>
     <div>
         <label>
             Role Name:<input #roleName>
@@ -26,6 +27,7 @@
         </button>
         <hr>
     </div>
+    
     <div *ngIf="selectedRole">
         <h2>Selected Role</h2>
         <br>
