@@ -12,3 +12,7 @@ web2.i427065.hera.fhict.nl
 1.	MohammadReza  - i378474
 2.	Abdullah - i409411
 3.	Mattia - i427065
+
+# Key Features
+*  Class inheritance Employee - Role
+*  Routing by ID in URL
