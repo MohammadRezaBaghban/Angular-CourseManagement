@@ -2,36 +2,39 @@
     <h1>Roles</h1>
     <div class="table-responsive">
         <table class="table table-bordered table-dark">
-            <tr>
+            <tr style="background-color:#81017B ;">
                 <th scope="col">Role ID</th>
                 <th scope="col">Role Name | FTE</th>
             </tr>
-          <tr class="selectedRow" *ngFor="let role of roles" [class.selected]="role=== selectedRole"
-            (click)="onSelect(role)">
-            <th scope="row">{{role.Id}}</th>
-            <td>{{role.RoleName}} | FTE: {{role.FTE}}</td>
-          </tr>
+            <tr class="selectedRow" *ngFor="let role of roles" [class.selected]="role=== selectedRole"
+                (click)="onSelect(role)">
+                <th scope="row">{{role.Id}}</th>
+                <td>{{role.RoleName}} | FTE: {{role.FTE}}</td>
+            </tr>
         </table>
     </div>
     <hr>
     <div>
+        <h2>Add new role</h2>
         <label>
             Role Name:<input #roleName>
         </label>
+    </div>
+    <div>
         <label>
             Role Id: <input #roleId>
         </label>
-
-        <button title="Add Role" (click)="AddRole(roleName.value,roleId.value); roleName.value=''; roleId.value='';">
+    </div>
+    <div>
+        <button type="button" class="btn btn-primary"
+            (click)="AddRole(roleName.value,roleId.value); roleName.value=''; roleId.value='';">
             Add Role
         </button>
-        <hr>
     </div>
-    
+    <hr>
     <div *ngIf="selectedRole">
         <h2>Selected Role</h2>
         <br>
-
         <label> RoleName:
             <input [(ngModel)]="selectedRole.RoleName" placeholder="RoleName" />
         </label>
@@ -40,12 +43,10 @@
             <input [(ngModel)]="selectedRole.FTE" placeholder="FTE" />
         </label>
         <br>
-        <br>
-
-        <button title="Delete Role" (click)="onDelete(selectedRole)">
+        <button type="button" class="btn btn-danger" (click)="onDelete(selectedRole)">
             Delete Role
         </button>
-        <button (click)="clearSelectedRole()">Hide Detail Panel</button>
+        <button type="button" class="btn btn-primary" (click)="clearSelectedRole()">Hide Detail Panel</button>
 
     </div>
 </div>

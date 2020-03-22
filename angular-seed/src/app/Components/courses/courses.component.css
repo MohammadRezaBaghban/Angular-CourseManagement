@@ -1,18 +1,5 @@
 /* CoursesComponent's private CSS styles */
 @import 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
-/* .grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  grid-gap: 10px;
-  padding: 10px;
-  border: 2px solid #dfdfdf;
-}
-.line {
-  grid-column-start: 1;
-  grid-column-end: 5;
-  height: 2px;
-  border-bottom: 1px solid #dfdfdf;
-} */
 .selectedRow:hover{
   color: white;
   background-color: #81017B;
@@ -20,4 +7,7 @@
 .selectedRow.selected{
   background-color: #E37BDF;
   color: white;
+}
+[type=button]{
+  margin:3px;
 }
