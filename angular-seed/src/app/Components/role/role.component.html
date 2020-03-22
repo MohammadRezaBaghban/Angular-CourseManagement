@@ -1,18 +1,35 @@
-<div>
+<div class="container">
     <hr>
-    <h1>Roles</h1>
     <div>
-        <ul class="roles">
-            <li *ngFor="let role of roles" (click)="onSelect(role)" [class.selected]="role === selectedRole">
-                <div>
-
-                </div>
-                <span class="badge">{{role.Id}}</span>{{role.RoleName}} | FTE: {{role.FTE}}
-            </li>
-        </ul>
+        <h1>Roles</h1>
+        <table class="table table-bordered table-dark">
+            <tr>
+                <td>
+                    <b>ID</b>
+                </td>
+                <td>
+                    <b>Name</b>
+                </td>
+                <td>
+                    <b>FTE Workload</b>
+                </td>
+            </tr>
+            <tr class="selectedRow" *ngFor="let role of roles" (click)="onSelect(role)"
+                [class.selected]="role === selectedRole">
+                <td>
+                    {{role.Id}}
+                </td>
+                <td>
+                    {{role.RoleName}}
+                </td>
+                <td>
+                    {{role.FTE}}
+                </td>
+            </tr>
+        </table>
+        <app-role-detail [selectedRole]="selectedRole" [roles]="roles"></app-role-detail>
         <hr>
     </div>
-
     <div>
         <label>
             Role Name:<input #roleName>
@@ -26,5 +43,4 @@
         </button>
         <hr>
     </div>
-    <app-role-detail [selectedRole]="selectedRole" [roles]="roles"></app-role-detail>
 </div>

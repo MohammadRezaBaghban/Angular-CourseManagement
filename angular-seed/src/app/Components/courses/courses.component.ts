@@ -5,7 +5,7 @@ import { User } from '../../Modules/user';
 import { UserService } from '../../Modules/Services/user.service';
 import { Profile } from '../../Modules/profile';
 import { ProfileServiceService } from '../../Modules/Services/profile-service.service';
-import { element } from 'protractor';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -30,7 +30,12 @@ export class CoursesComponent implements OnInit {
   updateprofilesDropdownSelected = [];
   updateName: string;
 
-  constructor(private courseService: CourseService, private userService: UserService, private profileService: ProfileServiceService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private courseService: CourseService, 
+    private userService: UserService, 
+    private profileService: ProfileServiceService
+    ) { }
 
   ngOnInit(): void {
     this.getCourses();
@@ -44,7 +49,6 @@ export class CoursesComponent implements OnInit {
 
     profiles.forEach(element => {
       this.profilesDropdownList.push(element);
-      //console.log(element);
     });
 
     this.dropdownSettings = {
@@ -65,6 +69,26 @@ export class CoursesComponent implements OnInit {
       unSelectAllText: 'UnSelect All',
       enableSearchFilter: true
     };
+
+    const id = +this.route.snapshot.paramMap.get('id');
+    if(id != 0)
+    {
+      this.courseService.getCourse(id)
+        .subscribe(hero => this.selectedCourse = hero);
+      
+      if(this.selectedCourse != null)
+      {
+        this.updateName = this.selectedCourse.name;
+
+        this.selectedCourse.teachers.forEach(element => {
+          this.updateSelectedItems.push(element);
+        });
+
+        this.selectedCourse.profiles.forEach(element => {
+          this.updateprofilesDropdownSelected.push(element);
+        });
+      }
+    }
   }
 
   onSelect(course: Course): void {
@@ -73,7 +97,7 @@ export class CoursesComponent implements OnInit {
     this.updateprofilesDropdownSelected = [];
 
     this.updateName = course.name;
-
+    
     course.teachers.forEach(element => {
       this.updateSelectedItems.push(element);
     });
@@ -102,7 +126,7 @@ export class CoursesComponent implements OnInit {
     this.userService.getUsers()
       .subscribe(users => usersList = users);
 
-    return usersList.filter(u => u.role == 'teacher');
+    return usersList.filter(u => u.role.RoleName == 'Teacher');
   }
 
   getProfiles(): Profile[] {

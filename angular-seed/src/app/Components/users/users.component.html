@@ -1,89 +1,91 @@
-<!--table users-->
-<h2>Users</h2>
-<div class="table-responsive">
-  <table class="table table-bordered table-dark">
-    <tr>
-      <th scope="col">User Id</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Role</th>
-      <th scope="col">Birth Date</th>
-    </tr>
-    <tr class="selectedRow" *ngFor="let user of users " [class.selected]="user === selectedUser"
-      (click)="onSelect(user)">
-      <th scope="row">{{user.id}}</th>
-      <td>{{user.first_name}}</td>
-      <td>{{user.last_name}}</td>
-      <td>{{user.role}}</td>
-      <td>{{user.dob}}</td>
-    </tr>
-  </table>
+<div class="container">
+  <h2>Users</h2>
+  <h4><label for="search-box">User Name Search</label></h4>
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+  <br><br>
+  <div class="table-responsive">
+    <table class="table table-bordered table-dark">
+      <tr>
+        <th scope="col">User Id</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Role</th>
+        <th scope="col">Birth Date</th>
+      </tr>
+      <tr class="selectedRow" *ngFor="let user of users " [class.selected]="user === selectedUser"
+        (click)="onSelect(user)">
+        <th scope="row">{{user.id}}</th>
+        <td>{{user.first_name}}</td>
+        <td>{{user.last_name}}</td>
+        <td>{{user.role.RoleName}}</td>
+        <td>{{user.dob}}</td>
+      </tr>
+    </table>
+  </div>
+  <!-- Section that displays details-->
+  <div *ngIf="selectedUser">
+
+    <h2>Edit {{selectedUser.first_name | uppercase}} Details</h2>
+    <div>
+      <span>id: </span>{{selectedUser.id}}</div>
+    <div>
+      <label>First name:
+        <input [(ngModel)]="updateFirstName" placeholder="First name" />
+      </label>
+    </div>
+    <div>
+      <label>Last name:
+        <input [(ngModel)]="updateLastName" placeholder="Last name" />
+      </label>
+    </div>
+
+    <div>
+      <label>Role:
+      </label>
+      <angular2-multiselect [data]="dropdownList" [(ngModel)]="updateSelectedItem" [settings]="dropdownSettings">
+      </angular2-multiselect>
+    </div>
+    <br>
+    <div>
+      <label>Birth date:
+        <input [(ngModel)]="updatedob" placeholder="Birth date" />
+      </label>
+    </div>
+    <div>
+      <button class="delete" title="Update" (click)="updateUser(selectedUser)">Update User</button>
+      <button class="delete" title="delete user" (click)="deleteUser(selectedUser)">Delete User</button>
+    </div>
+  </div>
+  <br><br>
+  <!-- Section to add new user -->
+  <div>
+    <h2>Add new user</h2>
+    <div>
+      <label>First name:
+        <input #firstName />
+      </label>
+    </div>
+    <div>
+      <label>Last name:
+        <input #lastName />
+      </label>
+    </div>
+    <div>
+      <label>Role:
+      </label>
+      <angular2-multiselect [data]="dropdownList" [(ngModel)]="selectedItem" [settings]="dropdownSettings">
+      </angular2-multiselect>
+    </div>
+    <br>
+    <div>
+      <label>Birth Date:
+        <input #dob />
+      </label>
+    </div>
+    <div>
+      <button (click)="addUser(firstName.value, lastName.value, dob.value );">
+        add user
+      </button>
+    </div>
+  </div>
 </div>
-<div *ngIf="selectedUser">
-
-  <h2>Edit {{selectedUser.first_name | uppercase}} Details</h2>
-  <div>
-    <span>id: </span>{{selectedUser.id}}</div>
-
-  <div>
-    <label>First name:
-      <input [(ngModel)]="selectedUser.first_name" placeholder="First name" />
-    </label>
-  </div>
-  <div>
-    <label>Last name:
-      <input [(ngModel)]="selectedUser.last_name" placeholder="Last name" />
-    </label>
-  </div>
-  <div>
-    <label>Role:
-      <input [(ngModel)]="selectedUser.role" placeholder="Role" />
-    </label>
-  </div>
-  <div>
-    <label>Birth date:
-      <input [(ngModel)]="selectedUser.dob" placeholder="Birth date" />
-    </label>
-  </div>
-  <div>
-    <button class="delete" title="delete user" (click)="deleteUser(selectedUser)">Delete User</button>
-  </div>
-</div>
-<br><br>
-<div>
-  <h2>Add new user</h2>
-  <div>
-    <label>First name:
-      <input #firstName />
-    </label>
-  </div>
-  <div>
-    <label>Last name:
-      <input #lastName />
-    </label>
-  </div>
-  <div>
-    <label>Role:
-      <input #role />
-    </label>
-  </div>
-  <div>
-    <label>Birth Date:
-      <input #dob />
-    </label>
-  </div>
-  <div>
-    <button (click)="addUser(role.value, firstName.value, lastName.value, dob.value );">
-      add user
-    </button>
-  </div>
-</div>
-
-
-<!-- <ul class="users">
-    <li *ngFor="let user of users" 
-    [class.selected]="user === selectedUser"
-    (click)="onSelect(user)">
-       <span class="badge">{{user.id}}</span> {{user.first_name}}{{user.last_name}}
-    </li>
-  </ul> -->
