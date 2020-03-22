@@ -17,7 +17,7 @@
         <div class="table-responsive">
 
             <table class="table table-bordered table-dark">
-                <tr>
+                <tr style="background-color: #81017B;">
 
                     <td align="center">Abbreviation: <input [(ngModel)]="selectedProfile.profileAbbreviation"
                             placeholder="profileAbbreviation"></td>
@@ -29,10 +29,10 @@
                         </label>
                     </td>
                 </tr>
-                <tr>
+                <tr style="background-color: #81017B;">
                     <td colspan="5" align="center">Course Owner Information</td>
                 </tr>
-                <tr align="center">
+                <tr style="background-color: #81017B; text-align:center;">
                     <th scope="col">User Id</th>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
@@ -47,10 +47,14 @@
                     <td>{{selectedProfile.profileOwner.dob}}</td>
                 </tr>
             </table>
-            <button title="Delete Profile" (click)="onDelete(selectedProfile)">
-                Delete Role
+            <button type="button" class="btn btn-danger"
+                    (click)="onDelete(selectedProfile)">
+                    Delete Profile
             </button>
-            <button (click)="clearSelectedProfile()">Hide Detail Panel</button>
+            <button type="button" class="btn btn-primary"
+                    (click)="clearSelectedProfile()">
+                    Hide Detail Panel
+            </button>
         </div>
     </div>
 </div>

@@ -5,7 +5,7 @@
   <hr>
   <div class="table-responsive">
     <table class="table table-bordered table-dark">
-      <tr>
+      <tr style="background-color:#81017B ;">
         <th scope="col">User Id</th>
         <th scope="col">First Name</th>
         <th scope="col">Last Name</th>
@@ -25,7 +25,7 @@
   <!-- Section that displays details-->
   <div *ngIf="selectedUser">
 
-    <h2>Edit {{selectedUser.first_name | uppercase}} Details</h2>
+    <h2>{{selectedUser.first_name | uppercase}} Details</h2>
     <div>
       <span>id: </span>{{selectedUser.id}}</div>
     <div>
@@ -52,8 +52,8 @@
       </label>
     </div>
     <div>
-      <button class="delete" title="Update" (click)="updateUser(selectedUser)">Update User</button>
-      <button class="delete" title="delete user" (click)="deleteUser(selectedUser)">Delete User</button>
+      <button class="btn btn-success" type="button" (click)="updateUser(selectedUser)">Update User</button>
+      <button class="btn btn-danger" type="button" (click)="deleteUser(selectedUser)">Delete User</button>
     </div>
   </div>
   <hr>
@@ -83,8 +83,8 @@
       </label>
     </div>
     <div>
-      <button (click)="addUser(firstName.value, lastName.value, dob.value );">
-        add user
+      <button class="btn btn-primary" type="button" (click)="addUser(firstName.value, lastName.value, dob.value );">
+        Add User
       </button>
     </div>
   </div>

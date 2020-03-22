@@ -8,3 +8,6 @@
   background-color: #E37BDF;
   color: white;
 }
+[type=button]{
+  margin:3px;
+}
