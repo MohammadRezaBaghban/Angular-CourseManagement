@@ -17,17 +17,17 @@
         <th scope="row">{{user.id}}</th>
         <td>{{user.first_name}}</td>
         <td>{{user.last_name}}</td>
-        <td >{{user.role.RoleName}}</td>
+        <td>{{user.role.RoleName}}</td>
         <td>{{user.dob}}</td>
       </tr>
     </table>
   </div>
+  <!-- Section that displays details-->
   <div *ngIf="selectedUser">
-  
+
     <h2>Edit {{selectedUser.first_name | uppercase}} Details</h2>
     <div>
       <span>id: </span>{{selectedUser.id}}</div>
-  
     <div>
       <label>First name:
         <input [(ngModel)]="updateFirstName" placeholder="First name" />
@@ -38,33 +38,26 @@
         <input [(ngModel)]="updateLastName" placeholder="Last name" />
       </label>
     </div>
+
     <div>
       <label>Role:
-        <angular2-multiselect 
-            [data]="dropdownList" 
-            [(ngModel)]="updateSelectedItem" 
-            [settings]="dropdownSettings" >
-            <c-item>
-              <ng-template let-item="item">
-                <label>{{item.RoleName}}</label>
-              </ng-template>
-            </c-item>  
-          </angular2-multiselect>
       </label>
+      <angular2-multiselect [data]="dropdownList" [(ngModel)]="updateSelectedItem" [settings]="dropdownSettings">
+      </angular2-multiselect>
     </div>
+    <br>
     <div>
       <label>Birth date:
         <input [(ngModel)]="updatedob" placeholder="Birth date" />
       </label>
     </div>
     <div>
-      <button class="delete" title="Update"
-              (click)="updateUser(selectedUser)">Update User</button>
-      <button class="delete" title="delete user" 
-              (click)="deleteUser(selectedUser)">Delete User</button>
+      <button class="delete" title="Update" (click)="updateUser(selectedUser)">Update User</button>
+      <button class="delete" title="delete user" (click)="deleteUser(selectedUser)">Delete User</button>
     </div>
   </div>
   <br><br>
+  <!-- Section to add new user -->
   <div>
     <h2>Add new user</h2>
     <div>
@@ -79,18 +72,11 @@
     </div>
     <div>
       <label>Role:
-        <angular2-multiselect 
-        [data]="dropdownList" 
-        [(ngModel)]="selectedItem" 
-        [settings]="dropdownSettings" >
-        <c-item>
-          <ng-template let-item="item">
-            <label>{{item.RoleName}}</label>
-          </ng-template>
-        </c-item>  
-      </angular2-multiselect>
       </label>
+      <angular2-multiselect [data]="dropdownList" [(ngModel)]="selectedItem" [settings]="dropdownSettings">
+      </angular2-multiselect>
     </div>
+    <br>
     <div>
       <label>Birth Date:
         <input #dob />
@@ -102,13 +88,4 @@
       </button>
     </div>
   </div>
-  
-  
-  <!-- <ul class="users">
-      <li *ngFor="let user of users" 
-      [class.selected]="user === selectedUser"
-      (click)="onSelect(user)">
-         <span class="badge">{{user.id}}</span> {{user.first_name}}{{user.last_name}}
-      </li>
-    </ul> -->
 </div>

@@ -12,7 +12,6 @@ export class RoleServiceService {
 
   getRoles(): Observable<Role[]> {
     return of(ROLES);
-  
   }
 
 }
