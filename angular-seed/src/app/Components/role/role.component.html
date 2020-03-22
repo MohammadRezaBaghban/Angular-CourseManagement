@@ -2,6 +2,11 @@
     <hr>
     <div>
         <h1>Roles</h1>
+        <h4>
+            <label for="search-box"> Role Name Search </label> <span> </span>
+            <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+        </h4>
+
         <table class="table table-bordered table-dark">
             <tr>
                 <td>

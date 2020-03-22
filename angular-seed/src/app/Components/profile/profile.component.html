@@ -1,5 +1,10 @@
 <div class="container">
     <hr>
+    <h4>
+        <label for="search-box"> Profile Name Search </label> <span> </span>
+        <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+    </h4>
+
     <table>
         <tr>
             <td>

@@ -21,8 +21,23 @@ export class RoleComponent implements OnInit {
   }
 
   onSelect(role: Role): void {
-    this.selectedRole = role;
+    if (this.selectedRole === role) {
+      this.selectedRole = null;
+    } else {
+      this.selectedRole = role;
+    }
   }
+
+  search(term: string): void {
+    if (term.length != 0) {
+      this.roles = this.roles.filter(
+        role => role.RoleName.toUpperCase().startsWith(term.toUpperCase()));
+    }
+    else {
+      this.getHeros();
+    }
+  }
+
 
   AddRole(roleName: string, roleId: number): void {
     if (!this.roles.find(role => role.Id === roleId) && !this.roles.find(role => role.RoleName === roleName)) {

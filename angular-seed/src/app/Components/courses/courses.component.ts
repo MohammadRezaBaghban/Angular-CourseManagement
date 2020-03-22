@@ -32,10 +32,10 @@ export class CoursesComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private courseService: CourseService, 
-    private userService: UserService, 
+    private courseService: CourseService,
+    private userService: UserService,
     private profileService: ProfileServiceService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.getCourses();
@@ -71,13 +71,11 @@ export class CoursesComponent implements OnInit {
     };
 
     const id = +this.route.snapshot.paramMap.get('id');
-    if(id != 0)
-    {
+    if (id != 0) {
       this.courseService.getCourse(id)
         .subscribe(hero => this.selectedCourse = hero);
-      
-      if(this.selectedCourse != null)
-      {
+
+      if (this.selectedCourse != null) {
         this.updateName = this.selectedCourse.name;
 
         this.selectedCourse.teachers.forEach(element => {
@@ -97,7 +95,7 @@ export class CoursesComponent implements OnInit {
     this.updateprofilesDropdownSelected = [];
 
     this.updateName = course.name;
-    
+
     course.teachers.forEach(element => {
       this.updateSelectedItems.push(element);
     });
@@ -112,8 +110,10 @@ export class CoursesComponent implements OnInit {
       this.displayCourses = this.courses.filter(
         course => course.name.toUpperCase().startsWith(term.toUpperCase()));
     }
-    else
-      this.displayCourses = this.courses;
+    else {
+      this.courses = this.courses;
+    }
+
   }
 
   getCourses(): void {
