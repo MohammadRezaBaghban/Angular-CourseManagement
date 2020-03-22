@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'courses', component: CoursesComponent },
+  { path: 'courses/:id', component: CoursesComponent },
   { path: 'roles', component: RoleComponent },
   { path: 'users', component: UsersComponent },
   { path: 'profiles', component: ProfileComponent }

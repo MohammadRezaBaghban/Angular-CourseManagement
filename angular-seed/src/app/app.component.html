@@ -1,23 +1,8 @@
-<table align="center">
-    <tr>
-        <br><br>
-        <h1>{{title}}</h1>
-        <br>
+<div>
+    <app-main-nav></app-main-nav>
+</div>
 
-    </tr>
-    <tr>
-        <td>
-            <nav>
-                <a routerLink="/dashboard">Dashboard</a>
-                <a routerLink="/profiles">Profiles</a>
-                <a routerLink="/courses">Courses</a>
-                <a routerLink="/roles">Roles</a>
-                <a routerLink="/users">Users</a>
+<router-outlet></router-outlet>
 
-            </nav>
-        </td>
-    </tr>
-    <tr>
-        <router-outlet></router-outlet>
-    </tr>
-</table>
+        
+   

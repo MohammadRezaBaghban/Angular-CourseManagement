@@ -1,7 +1,6 @@
 import { User } from '../user';
-import {Role} from '../role';
+import { Role } from '../role';
 import { Employee } from '../employee';
-import{Profile} from '../profile';
 
 export const USERS: User[] = [
   new User(1,new Employee(1, 'Teacher', 1) , 'Mario ', 'Cruiser', '20-05-1980'),

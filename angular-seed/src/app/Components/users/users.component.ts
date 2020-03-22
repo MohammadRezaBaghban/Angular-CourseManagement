@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../Modules/user';
 import { UserService } from '../../Modules/Services/user.service';
-import {Role} from '../../Modules/role';
-import{RoleServiceService} from '../../Modules/Services/role-service.service';
+import { Role } from '../../Modules/role';
+import { RoleServiceService } from '../../Modules/Services/role-service.service';
 import { element } from 'protractor';
 
 @Component({
@@ -17,10 +17,10 @@ export class UsersComponent implements OnInit {
   displayUsers: User[];
 
   dropdownList = [];
-  selectedItem;
+  selectedItem = [];
   dropdownSettings = {};
 
-  updateSelectedItem;
+  updateSelectedItem = [];
   updateFirstName: string;
   updateLastName: string;
   updatedob: string;
@@ -45,14 +45,17 @@ export class UsersComponent implements OnInit {
   }
   
   onSelect(user: User): void {
+    this.updateSelectedItem = [];
+
     this.selectedUser = user;
-    this.updateSelectedItem = user.role ;
+
+    this.updateSelectedItem.push(user.role);
+    console.log(this.updateSelectedItem.length);
     this.updateFirstName = user.first_name;
     this.updateLastName = user.last_name;
-    this.updatedob = user.dob;
-
-    
+    this.updatedob = user.dob;  
   }
+
   search(term: string): void {
     if (term.length != 0) {
       this.displayUsers = this.users.filter(
@@ -68,9 +71,8 @@ export class UsersComponent implements OnInit {
   }
   addUser(firstName: string, lastName: string, dob: string): void {
     if (!firstName && !lastName && !dob) { return; }
-    let newUser: User = new User(this.userService.generateId(this.users), this.selectedItem, firstName, lastName, dob);
+    let newUser: User = new User(this.userService.generateId(this.users), this.selectedItem[0], firstName, lastName, dob);
     this.users.push(newUser);
-
   }
 
   updateUser(user: User): void{
@@ -78,7 +80,7 @@ export class UsersComponent implements OnInit {
     userToUpdate.first_name = this.updateFirstName;
     userToUpdate.last_name = this.updateLastName;
     userToUpdate.dob = this.updatedob;
-    userToUpdate.role = this.updateSelectedItem;
+    userToUpdate.role = this.updateSelectedItem[0];
   }
 
   deleteUser(user: User): void {

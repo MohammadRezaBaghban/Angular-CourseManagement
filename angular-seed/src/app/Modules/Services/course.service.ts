@@ -10,6 +10,10 @@ export class CourseService {
 
   constructor() { }
 
+  getCourse(id: number): Observable<Course> {
+    return of(COURSES.find(course => course.id === id));
+  }
+
   getCourses(): Observable<Course[]> {
     return of(COURSES);
   }
