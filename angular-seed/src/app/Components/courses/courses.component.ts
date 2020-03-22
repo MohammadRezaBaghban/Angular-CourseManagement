@@ -6,6 +6,8 @@ import { UserService } from '../../Modules/Services/user.service';
 import { Profile } from '../../Modules/profile';
 import { ProfileServiceService } from '../../Modules/Services/profile-service.service';
 import { element } from 'protractor';
+import {Role} from '../../Modules/role';
+import { Employee } from '../../Modules/employee';
 
 @Component({
   selector: 'app-courses',
@@ -102,7 +104,7 @@ export class CoursesComponent implements OnInit {
     this.userService.getUsers()
       .subscribe(users => usersList = users);
 
-    return usersList.filter(u => u.role == 'teacher');
+    return usersList.filter(u => u.role = new Employee(1, 'Teacher', 1));
   }
 
   getProfiles(): Profile[] {
