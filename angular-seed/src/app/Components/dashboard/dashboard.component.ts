@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   users: User[] = [];
   roles: Role[] = [];
   profiles: Profile[] = [];
+  selectedProfile: Profile;
 
   constructor(private courseService: CourseService,
     private userService: UserService,
@@ -49,5 +50,9 @@ export class DashboardComponent implements OnInit {
   getProfiles(): void {
     this.profileService.getProfiles()
       .subscribe(profiles => this.profiles = profiles.slice(0, 3));
+  }
+
+  onProfileSelect(profile: Profile): void {
+    this.selectedProfile = profile;
   }
 }

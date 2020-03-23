@@ -12,9 +12,42 @@
         </table>
     </div>
     <hr>
+<<<<<<< HEAD
     <div *ngIf="selectedProfile">
         <h1>Selected Profile</h1>
         <div class="table-responsive">
+=======
+    <h4>
+        <label for="search-box"> Profile Name Search </label> <span> </span>
+        <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+    </h4>
+
+    <table>
+        <tr>
+            <td>
+                <h1>Profiles</h1>
+                <div>
+                    <ul class="profiles">
+                        <li *ngFor="let profile of profiles" (click)="onSelect(profile)"
+                            [class.selected]="profile === selectedProfile">
+                            <div>
+
+                            </div>
+                            <span class="badge">{{profile.profileAbbreviation}}</span>{{profile.profileName}} | Owner:
+                            {{profile.profileOwner.first_name}} {{profile.profileOwner.last_name}} | Nr of Courses:
+                            {{profile.containingCourse.length}}
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <app-profile-detail [selectedProfile]="selectedProfile" [profiles]="profiles"></app-profile-detail>
+            </td>
+        </tr>
+    </table>
+>>>>>>> f61d160a7f9a91be18cd5ec7493711ea89bcc5e7
 
             <table class="table table-bordered table-dark">
                 <tr style="background-color: #81017B;">

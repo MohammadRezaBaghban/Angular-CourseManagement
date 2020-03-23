@@ -7,7 +7,11 @@
 .selectedRow.selected{
   background-color: #E37BDF;
   color: white;
+<<<<<<< HEAD
 }
 [type=button]{
   margin:3px;
 }
+=======
+} 
+>>>>>>> f61d160a7f9a91be18cd5ec7493711ea89bcc5e7

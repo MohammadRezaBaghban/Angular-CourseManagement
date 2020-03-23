@@ -1,4 +1,5 @@
 <div class="container">
+<<<<<<< HEAD
     <h1>Roles</h1>
     <div class="table-responsive">
         <table class="table table-bordered table-dark">
@@ -14,6 +15,44 @@
         </table>
     </div>
     <hr>
+=======
+    <hr>
+    <div>
+        <h1>Roles</h1>
+        <h4>
+            <label for="search-box"> Role Name Search </label> <span> </span>
+            <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+        </h4>
+
+        <table class="table table-bordered table-dark">
+            <tr>
+                <td>
+                    <b>ID</b>
+                </td>
+                <td>
+                    <b>Name</b>
+                </td>
+                <td>
+                    <b>FTE Workload</b>
+                </td>
+            </tr>
+            <tr class="selectedRow" *ngFor="let role of roles" (click)="onSelect(role)"
+                [class.selected]="role === selectedRole">
+                <td>
+                    {{role.Id}}
+                </td>
+                <td>
+                    {{role.RoleName}}
+                </td>
+                <td>
+                    {{role.FTE}}
+                </td>
+            </tr>
+        </table>
+        <app-role-detail [selectedRole]="selectedRole" [roles]="roles"></app-role-detail>
+        <hr>
+    </div>
+>>>>>>> f61d160a7f9a91be18cd5ec7493711ea89bcc5e7
     <div>
         <h2>Add new role</h2>
         <label>
@@ -31,6 +70,7 @@
             Add Role
         </button>
     </div>
+<<<<<<< HEAD
     <hr>
     <div *ngIf="selectedRole">
         <h2>Selected Role</h2>
@@ -49,4 +89,6 @@
         <button type="button" class="btn btn-primary" (click)="clearSelectedRole()">Hide Detail Panel</button>
 
     </div>
+=======
+>>>>>>> f61d160a7f9a91be18cd5ec7493711ea89bcc5e7
 </div>
