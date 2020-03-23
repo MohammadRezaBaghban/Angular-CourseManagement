@@ -111,7 +111,7 @@ export class CoursesComponent implements OnInit {
         course => course.name.toUpperCase().startsWith(term.toUpperCase()));
     }
     else {
-      this.courses = this.courses;
+      this.displayCourses = this.courses;
     }
 
   }
