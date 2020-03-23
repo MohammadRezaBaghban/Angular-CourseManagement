@@ -36,16 +36,20 @@
         <hr>
     </div>
     <div>
+        <h2>Add new role</h2>
         <label>
             Role Name:<input #roleName>
         </label>
+    </div>
+    <div>
         <label>
             Role Id: <input #roleId>
         </label>
-
-        <button title="Add Role" (click)="AddRole(roleName.value,roleId.value); roleName.value=''; roleId.value='';">
+    </div>
+    <div>
+        <button type="button" class="btn btn-primary"
+            (click)="AddRole(roleName.value,roleId.value); roleName.value=''; roleId.value='';">
             Add Role
         </button>
-        <hr>
     </div>
 </div>

@@ -1,8 +1,10 @@
 <div class="container">
-  <h2>Available courses</h2>
+  <h1>Available courses</h1>
+  <hr>
   <h4><label for="search-box">Course Name Search</label></h4>
   <input #searchBox id="search-box" (input)="search(searchBox.value)" />
   <br><br>
+  <hr>
   <div class="table-responsive">
       <!-- <div class="head">ID</div>
       <div class="head">Name</div>
@@ -26,7 +28,7 @@
       </ng-container> -->
   
       <table class="table table-bordered table-dark">
-        <tr>
+        <tr style="background-color:#81017B ;">
           <th scope="col">ID</th>
           <th scope="col">Name</th>
           <th scope="col">Teachers</th>
@@ -42,6 +44,7 @@
       </table>
   </div>
   <br><br>
+  <hr>
   <h2>Add new course</h2>
   <div>
       <label>Course name:
@@ -66,10 +69,11 @@
       </angular2-multiselect>
       <br>
       <!-- (click) passes input value to add() and then clears the input -->
-      <button (click)="add(courseName.value); courseName.value=''">
-        add
+      <button type="button" class="btn btn-primary" (click)="add(courseName.value); courseName.value=''">
+        Add Course
       </button>
   </div>
+  <hr>
   <div *ngIf="selectedCourse">
       <h2>{{selectedCourse.name | uppercase}} Details</h2>
       <div><span>ID: </span>{{selectedCourse.id}}</div>
@@ -101,9 +105,10 @@
           </angular2-multiselect>
         </label>
       </div>
-      <button class="delete" title="Update"
+      <button type="button" class="btn btn-success"
               (click)="update(selectedCourse)">Update</button>
-      <button class="delete" title="delete course"
+      <button type="button" class="btn btn-danger"
               (click)="delete(selectedCourse)">Delete course</button>
   </div>
+  <br><br>
 </div>
