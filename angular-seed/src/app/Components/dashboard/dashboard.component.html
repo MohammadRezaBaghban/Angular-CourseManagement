@@ -1,5 +1,4 @@
 <div class="container">
-<<<<<<< HEAD
     <table class="table">
       <tr >
         <td colspan="4">
@@ -15,22 +14,6 @@
             <tr *ngFor="let profile of profiles">
               <td >
                 <div>
-=======
-  <table>
-    <tr align="center" class="grid grid-pad">
-      <table align="center" class="table table-bordered table-dark">
-        <th colspan="4">
-          <h1 align="center">Recently Added / Updated</h1>
-        </th>
-        <tr>
-          <td>
-            <table>
-              <tr align="center">
-                <h3>Profiles</h3>
-              </tr>
-              <tr *ngFor="let profile of profiles" routerLink="/detail/{{profile.id}}">
-                <td align="center" (click)="onProfileSelect(profile)">
->>>>>>> f61d160a7f9a91be18cd5ec7493711ea89bcc5e7
                   <div>
                     <div>
                       <a>
@@ -40,7 +23,6 @@
                       </a>
                     </div>
                   </div>
-<<<<<<< HEAD
                 </div>
               </td>
             </tr>
@@ -54,19 +36,6 @@
             <tr *ngFor="let course of courses">
               <td >
                 <div>
-=======
-                </td>
-              </tr>
-            </table>
-          </td>
-          <td>
-            <table>
-              <tr align="center">
-                <h3>Courses</h3>
-              </tr>
-              <tr *ngFor="let course of courses">
-                <td align="center">
->>>>>>> f61d160a7f9a91be18cd5ec7493711ea89bcc5e7
                   <div>
                     <div>
                       <a>
@@ -76,7 +45,6 @@
                       </a>
                     </div>
                   </div>
-<<<<<<< HEAD
                 </div>
               </td>
             </tr>
@@ -90,19 +58,6 @@
             <tr *ngFor="let user of users">
               <td >
                 <div>
-=======
-                </td>
-              </tr>
-            </table>
-          </td>
-          <td>
-            <table>
-              <tr align="center">
-                <h3>Users</h3>
-              </tr>
-              <tr *ngFor="let user of users">
-                <td align="center">
->>>>>>> f61d160a7f9a91be18cd5ec7493711ea89bcc5e7
                   <div>
                     <div>
                       <a>
@@ -112,7 +67,6 @@
                       </a>
                     </div>
                   </div>
-<<<<<<< HEAD
                 </div>
               </td>
             </tr>
@@ -126,19 +80,6 @@
             <tr *ngFor="let role of roles">
               <td >
                 <div>
-=======
-                </td>
-              </tr>
-            </table>
-          </td>
-          <td>
-            <table>
-              <tr align="center">
-                <h3>Roles</h3>
-              </tr>
-              <tr *ngFor="let role of roles">
-                <td align="center">
->>>>>>> f61d160a7f9a91be18cd5ec7493711ea89bcc5e7
                   <div>
                     <div>
                       <a>
@@ -148,7 +89,6 @@
                       </a>
                     </div>
                   </div>
-<<<<<<< HEAD
                 </div>
               </td>
             </tr>
@@ -156,19 +96,4 @@
         </td>
       </tr>
     </table>
-=======
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-    </tr>
-    <tr>
-      <td *ngIf="selectedProfile">
-        <app-profile-detail [selectedProfile]="selectedProfile" [profiles]="profiles"></app-profile-detail>
-      </td>
-    </tr>
-  </table>
->>>>>>> f61d160a7f9a91be18cd5ec7493711ea89bcc5e7
 </div>
