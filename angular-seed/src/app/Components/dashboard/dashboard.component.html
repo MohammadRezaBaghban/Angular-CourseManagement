@@ -11,8 +11,8 @@
             <tr >
               <h2>Profiles</h2>
             </tr>
-            <tr *ngFor="let profile of profiles">
-              <td >
+            <tr *ngFor="let profile of profiles" routerLink="/detail/{{profile.id}}">
+              <td routerLink="/detail/{{profile.id}}">
                 <div>
                   <div>
                     <div>
@@ -89,11 +89,17 @@
                       </a>
                     </div>
                   </div>
-                </div>
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </tr>
+    <tr>
+      <td *ngIf="selectedProfile">
+        <app-profile-detail [selectedProfile]="selectedProfile" [profiles]="profiles"></app-profile-detail>
+      </td>
+    </tr>
+  </table>
 </div>

@@ -46,6 +46,7 @@ export class ProfileComponent implements OnInit {
   private addCourseToProfile(course: Course, profile: Profile) {
 
     let currentProfile = this.profiles.find(p => p.profileName == profile.profileName);
+
     if (currentProfile != undefined) {
       currentProfile.AddCourse(course);
     } else {
@@ -55,7 +56,11 @@ export class ProfileComponent implements OnInit {
   }
 
   onSelect(profile: Profile): void {
-    this.selectedProfile = profile;
+    if (this.selectedProfile == profile) {
+      this.selectedProfile = null;
+    } else {
+      this.selectedProfile = profile;
+    }
   }
 
 
