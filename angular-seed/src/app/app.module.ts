@@ -10,6 +10,8 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { ProfileComponent } from './Components/profile/profile.component';
+import { ProfileDetailComponent } from './Components/profile/profile-detail/profile-detail.component';
+import { RoleDetailComponent } from './Components/role/role-detail/role-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainNavComponent } from './Components/main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -28,6 +30,8 @@ import { MatListModule } from '@angular/material/list';
     UsersComponent,
     DashboardComponent,
     ProfileComponent,
+    ProfileDetailComponent,
+    RoleDetailComponent,
     MainNavComponent
   ],
   imports: [

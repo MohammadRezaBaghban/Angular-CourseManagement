@@ -33,9 +33,20 @@ export class ProfileComponent implements OnInit {
 
   }
 
+  search(term: string): void {
+    if (term.length != 0) {
+      this.profiles = this.profiles.filter(
+        profile => profile.profileName.toUpperCase().startsWith(term.trim().toUpperCase()));
+    }
+    else {
+      this.getProfiles();
+    }
+  }
+
   private addCourseToProfile(course: Course, profile: Profile) {
 
     let currentProfile = this.profiles.find(p => p.profileName == profile.profileName);
+
     if (currentProfile != undefined) {
       currentProfile.AddCourse(course);
     } else {
@@ -45,15 +56,11 @@ export class ProfileComponent implements OnInit {
   }
 
   onSelect(profile: Profile): void {
-    this.selectedProfile = profile;
-  }
-
-  onDelete(profile: Profile): void {
-    this.profiles.splice(this.profiles.indexOf(profile), 1);
-  }
-
-  clearSelectedProfile() {
-    this.selectedProfile = null;
+    if (this.selectedProfile == profile) {
+      this.selectedProfile = null;
+    } else {
+      this.selectedProfile = profile;
+    }
   }
 
 

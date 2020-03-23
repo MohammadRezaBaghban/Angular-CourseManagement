@@ -1,0 +1,22 @@
+<table *ngIf="selectedRole" class="table table-bordered table-dark">
+    <tr style="background-color: gray;">
+        <td colspan="3">
+            <h2 align="center">Selected Role</h2>
+        </td>
+    </tr>
+    <tr git align="center">
+        <td>{{selectedRole.Id}}</td>
+        <td>
+            <input [(ngModel)]="selectedRole.RoleName" placeholder="RoleName" />
+        </td>
+        <td>
+            <input [(ngModel)]="selectedRole.FTE" placeholder="FTE" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <button title="Delete Role" (click)="onDelete(selectedRole)"> Delete Role </button>
+            <button (click)="clearSelectedRole()"> Hide Panel </button>
+        </td>
+    </tr>
+</table>
