@@ -1,21 +1,47 @@
 import { Injectable } from '@angular/core';
-import { Course } from '../course';
+import { Course, CourseInterface } from '../course';
 import { Observable, of } from 'rxjs';
 import { COURSES } from '../Mock_Objects/mock-courses';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map } from "rxjs/operators";
+import { element } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
+  private coursesUrl = 'https://aimchatbot.herokuapp.com:443/course';  // URL to web api
 
-  constructor() { }
+  constructor( private http: HttpClient ) { }
 
   getCourse(id: number): Observable<Course> {
     return of(COURSES.find(course => course.id === id));
   }
 
   getCourses(): Observable<Course[]> {
-    return of(COURSES);
+    //return of(COURSES);
+    let courses: Course[];
+    let courseInt: CourseInterface[];
+
+    this.getCoursesInterface()
+      .subscribe(res => {
+        console.log(courseInt);
+
+        return of(courses);
+      });
+
+    
+
+    /*courseInt.forEach(element => {
+      let newCourse: Course = new Course(element.id, element.name, element.teachers, null);
+      courses.push(newCourse);
+    })*/
+  
+    //return of(courses);
+  }
+
+  getCoursesInterface(): Observable<CourseInterface[]> {
+    return this.http.get<CourseInterface[]>(this.coursesUrl);
   }
 
   genId(courses: Course[]): number {

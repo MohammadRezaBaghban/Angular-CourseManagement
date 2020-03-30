@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Course } from '../../Modules/course';
+import { Course, CourseInterface } from '../../Modules/course';
 import { CourseService } from '../../Modules/Services/course.service';
 import { User } from '../../Modules/user';
 import { UserService } from '../../Modules/Services/user.service';
 import { Profile } from '../../Modules/profile';
 import { ProfileServiceService } from '../../Modules/Services/profile-service.service';
 import { ActivatedRoute } from '@angular/router';
+import { stringify } from 'querystring';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-courses',
@@ -15,6 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 export class CoursesComponent implements OnInit {
 
   courses: Course[];
+  courseInter: CourseInterface[];
   displayCourses: Course[];
   selectedCourse: Course;
 
@@ -117,8 +120,17 @@ export class CoursesComponent implements OnInit {
   }
 
   getCourses(): void {
+    /*this.courseService.getCourses()
+      .subscribe(courses => courses.forEach(element => {
+        let newCourse: Course = new Course(element.id, element.name, element.teachers, null);
+        this.courses.push(newCourse);
+      }));*/
+
     this.courseService.getCourses()
       .subscribe(courses => this.courses = courses);
+
+    /*this.courseService.getTest()
+      .subscribe(courses => {this.courseInter = courses; console.log(this.courseInter);});*/
   }
 
   getTeachers(): User[] {
