@@ -1,7 +1,6 @@
 import { Course } from '../course';
 import { User } from '../user';
 import { Profile } from '../profile';
-import {Role} from '../role';
 import { Employee } from '../employee';
 
 export const COURSES: Course[] = [

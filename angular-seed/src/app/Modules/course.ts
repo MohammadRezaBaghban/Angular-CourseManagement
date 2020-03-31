@@ -21,5 +21,5 @@ export interface CourseInterface {
     id: number;
     name: string;
     des: string;
-    teachers: Array<any>[];
+    teachers: User[];
 }

@@ -3,8 +3,10 @@ import { Course, CourseInterface } from '../course';
 import { Observable, of } from 'rxjs';
 import { COURSES } from '../Mock_Objects/mock-courses';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map } from "rxjs/operators";
-import { element } from 'protractor';
+import { map } from "rxjs/operators";
+import { User } from '../user';
+import { Profile } from '../profile';
+import { Employee } from '../employee';
 
 @Injectable({
   providedIn: 'root'
@@ -20,30 +22,22 @@ export class CourseService {
 
   getCourses(): Observable<Course[]> {
     //return of(COURSES);
-    let courses: Course[];
-    let courseInt: CourseInterface[];
-
-    this.getCoursesInterface()
-      .subscribe(res => {
-        console.log(courseInt);
-
-        return of(courses);
-      });
-
+    return this.http.get<CourseInterface[]>(this.coursesUrl)
+      .pipe(
+        map( response => {
+          console.log('test');
+          console.log(response);
+          let courses: Course[] = [];
+          response.forEach(element => {
+            let newCourse: Course = new Course(element.id, element.name, element.teachers, null);
+            courses.push(newCourse);
+          })
+          return courses;
+        })
+      );
     
-
-    /*courseInt.forEach(element => {
-      let newCourse: Course = new Course(element.id, element.name, element.teachers, null);
-      courses.push(newCourse);
-    })*/
+  }
   
-    //return of(courses);
-  }
-
-  getCoursesInterface(): Observable<CourseInterface[]> {
-    return this.http.get<CourseInterface[]>(this.coursesUrl);
-  }
-
   genId(courses: Course[]): number {
     return courses.length > 0 ? Math.max(...courses.map(course => course.id)) + 1 : 11;
   }

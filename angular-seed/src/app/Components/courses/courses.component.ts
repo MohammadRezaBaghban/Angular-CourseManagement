@@ -42,7 +42,6 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCourses();
-    this.displayCourses = this.courses;
     let teachers: User[] = this.getTeachers();
     let profiles: Profile[] = this.getProfiles();
 
@@ -120,17 +119,8 @@ export class CoursesComponent implements OnInit {
   }
 
   getCourses(): void {
-    /*this.courseService.getCourses()
-      .subscribe(courses => courses.forEach(element => {
-        let newCourse: Course = new Course(element.id, element.name, element.teachers, null);
-        this.courses.push(newCourse);
-      }));*/
-
     this.courseService.getCourses()
-      .subscribe(courses => this.courses = courses);
-
-    /*this.courseService.getTest()
-      .subscribe(courses => {this.courseInter = courses; console.log(this.courseInter);});*/
+      .subscribe(courses => {this.courses = courses; this.displayCourses = courses;});
   }
 
   getTeachers(): User[] {
