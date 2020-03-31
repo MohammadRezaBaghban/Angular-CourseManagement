@@ -172,6 +172,8 @@ export class CoursesComponent implements OnInit {
 
   delete(course: Course): void {
     this.courses.splice(this.courses.indexOf(course), 1);
-    //this.courseService.deleteCourse(course).subscribe();
+    this.displayCourses = this.courses;
+    
+    this.courseService.deleteCourse(course).subscribe();
   }
 }

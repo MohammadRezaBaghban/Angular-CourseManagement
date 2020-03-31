@@ -14,6 +14,10 @@ import { Employee } from '../employee';
 export class CourseService {
   private coursesUrl = 'https://aimchatbot.herokuapp.com:443/course';  // URL to web api
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+  
   constructor( private http: HttpClient ) { }
 
   getCourse(id: number): Observable<Course> {
@@ -25,8 +29,6 @@ export class CourseService {
     return this.http.get<CourseInterface[]>(this.coursesUrl)
       .pipe(
         map( response => {
-          console.log('test');
-          console.log(response);
           let courses: Course[] = [];
           response.forEach(element => {
             let newCourse: Course = new Course(element.id, element.name, element.teachers, null);
@@ -42,27 +44,22 @@ export class CourseService {
     return courses.length > 0 ? Math.max(...courses.map(course => course.id)) + 1 : 11;
   }
 
-  /*addCourse (course: Course): Observable<Course> {
-    return this.http.post<Course>(this.heroesUrl, hero, this.httpOptions).pipe(
-      tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
-      catchError(this.handleError<Hero>('addHero'))
-    );
+  addCourse (course: Course): Observable<Course> {
+    return this.http.post<Course>(this.coursesUrl, course, this.httpOptions);
   }
   
-  updateCourse (course: Course): Observable<any> {
+  /*updateCourse (course: Course): Observable<any> {
     return this.http.put(this.heroesUrl, course, this.httpOptions).pipe(
       tap(_ => this.log(`updated hero id=${course.id}`)),
       catchError(this.handleError<any>('updateHero'))
     );
-  }
-
-  deleteCourse (course: Course | number): Observable<Course> {
-    const id = typeof course === 'number' ? course : course.id;
-    const url = `${this.coursesUrl}/${id}`;
-  
-    return this.http.delete<Hero>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted course id=${id}`)),
-      catchError(this.handleError<Course>('deleteCourse'))
-    );
   }*/
+
+  deleteCourse (course: Course): Observable<Course> {
+    const url = `${this.coursesUrl}/${course.id}`;
+
+    console.log(url);
+  
+    return this.http.delete<Course>(url, this.httpOptions);
+  }
 }
