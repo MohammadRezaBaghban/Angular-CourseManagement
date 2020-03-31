@@ -143,7 +143,14 @@ export class CoursesComponent implements OnInit {
     name = name.trim();
     if (!name) { return; }
     let newCourse: Course = new Course(this.courseService.genId(this.courses), name, this.selectedItems, this.profilesDropdownSelected);
-    this.courses.push(newCourse);
+    //this.courses.push(newCourse);
+    newCourse = new Course(this.courseService.genId(this.courses), name, null, null);
+
+    this.courseService.addCourse(newCourse)
+      .subscribe(course => {
+        this.courses.push(course);
+      });
+
     //add the course to the profile
     this.profilesDropdownSelected.forEach(element => {
       (element as Profile).AddCourse(newCourse);
@@ -151,11 +158,6 @@ export class CoursesComponent implements OnInit {
 
     this.selectedItems = [];
     this.profilesDropdownSelected = [];
-
-    /*this.courseService.addCourse({ name } as Course)
-      .subscribe(course => {
-        this.courses.push(course);
-      });*/
   }
 
   update(course: Course): void {
@@ -173,7 +175,7 @@ export class CoursesComponent implements OnInit {
   delete(course: Course): void {
     this.courses.splice(this.courses.indexOf(course), 1);
     this.displayCourses = this.courses;
-    
+
     this.courseService.deleteCourse(course).subscribe();
   }
 }
