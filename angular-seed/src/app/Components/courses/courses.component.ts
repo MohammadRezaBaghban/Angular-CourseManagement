@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Course, CourseInterface } from '../../Modules/course';
+import { Course } from '../../Modules/course';
 import { CourseService } from '../../Modules/Services/course.service';
 import { User } from '../../Modules/user';
 import { UserService } from '../../Modules/Services/user.service';
 import { Profile } from '../../Modules/profile';
 import { ProfileServiceService } from '../../Modules/Services/profile-service.service';
 import { ActivatedRoute } from '@angular/router';
-import { stringify } from 'querystring';
-import { element } from 'protractor';
 
 @Component({
   selector: 'app-courses',
@@ -17,7 +15,6 @@ import { element } from 'protractor';
 export class CoursesComponent implements OnInit {
 
   courses: Course[];
-  courseInter: CourseInterface[];
   displayCourses: Course[];
   selectedCourse: Course;
 

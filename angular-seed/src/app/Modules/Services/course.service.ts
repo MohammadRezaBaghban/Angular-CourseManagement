@@ -65,10 +65,10 @@ export class CourseService {
   
   updateCourse (course: Course): Observable<any> {
     const url = `${this.coursesUrl}/${course.id}`;
-    let upadateCI: CourseInterface;
+    let updateCI: CourseInterface;
 
-    upadateCI = {id: course.id, name: course.name, des: course.des, teachers: course.teachers};
-    return this.http.put(url, upadateCI, this.httpOptions).pipe(
+    updateCI = {id: course.id, name: course.name, des: course.des, teachers: course.teachers};
+    return this.http.put(url, updateCI, this.httpOptions).pipe(
       catchError(this.handleError<any>('updateHero'))
     );
   }
