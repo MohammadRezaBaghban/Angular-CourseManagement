@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { COURSES } from '../Mock_Objects/mock-courses';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map } from "rxjs/operators";
-import { CdkFixedSizeVirtualScroll } from '@angular/cdk/scrolling';
+import { ProfileCourseService } from './profile-course.service'
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +16,28 @@ export class CourseService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
   
-  constructor( private http: HttpClient ) { }
+  constructor( private http: HttpClient, private profileCourseService: ProfileCourseService ) { }
 
   getCourse(id: number): Observable<Course> {
-    return of(COURSES.find(course => course.id === id));
+    //return of(COURSES.find(course => course.id === id));
+
+    const url = `${this.coursesUrl}/${id}`;
+    return this.http.get<CourseInterface>(url)
+      .pipe(
+        map( response => {
+          let course: Course;
+          course.id = response.id;
+          course.name = response.name;
+          course.des = response.des;
+          course.teachers = response.teachers;
+          return course;
+        })
+      );
   }
 
   getCourses(): Observable<Course[]> {
     //return of(COURSES);
+
     return this.http.get<CourseInterface[]>(this.coursesUrl)
       .pipe(
         map( response => {
@@ -35,12 +49,11 @@ export class CourseService {
           return courses;
         })
       );
-    
   }
   
-  genId(courses: Course[]): number {
+  /*genId(courses: Course[]): number {
     return courses.length > 0 ? Math.max(...courses.map(course => course.id)) + 1 : 11;
-  }
+  }*/
 
   addCourse (course: Course): Observable<Course> {
     let addCI: CourseInterface;
