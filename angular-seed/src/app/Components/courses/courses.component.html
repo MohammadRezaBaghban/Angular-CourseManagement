@@ -31,6 +31,7 @@
         <tr style="background-color:#81017B ;">
           <th scope="col">ID</th>
           <th scope="col">Name</th>
+          <th scope="col">Description</th>
           <th scope="col">Teachers</th>
           <th scope="col">Profiles</th>
         </tr>
@@ -38,6 +39,7 @@
           (click)="onSelect(course)">
           <th scope="row">{{course.id}}</th>
           <td>{{course.name}}</td>
+          <td>{{course.des}}</td>
           <td ><ng-container *ngFor="let teacher of course.teachers" >{{teacher.first_name}} {{teacher.last_name}} ,</ng-container></td>
           <td ><ng-container *ngFor="let profile of course.profiles" >{{profile.profileName}} ,</ng-container></td>
         </tr>
@@ -49,6 +51,10 @@
   <div>
       <label>Course name:
         <input #courseName />
+      </label>
+      <br>
+      <label>Course description:
+        <input #courseDes />
       </label>
       <br><br>
       <angular2-multiselect 
@@ -69,7 +75,7 @@
       </angular2-multiselect>
       <br>
       <!-- (click) passes input value to add() and then clears the input -->
-      <button type="button" class="btn btn-primary" (click)="add(courseName.value); courseName.value=''">
+      <button type="button" class="btn btn-primary" (click)="add(courseName.value, courseDes.value); courseName.value=''; courseDes.value=''">
         Add Course
       </button>
   </div>

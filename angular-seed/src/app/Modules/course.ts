@@ -9,9 +9,10 @@ export class Course {
     //students: User[];
     profiles: Profile[];
 
-    constructor(id: number, name: string, teachers: User[], profiles: Profile[]) {
+    constructor(id: number, name: string, description: string, teachers: User[], profiles: Profile[]) {
         this.id = id;
         this.name = name;
+        this.des = description;
         this.teachers = teachers;
         this.profiles = profiles;
     }

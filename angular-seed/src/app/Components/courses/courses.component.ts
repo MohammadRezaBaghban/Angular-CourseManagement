@@ -139,16 +139,17 @@ export class CoursesComponent implements OnInit {
     return profileList;
   }
 
-  add(name: string): void {
+  add(name: string, description: string): void {
     name = name.trim();
-    if (!name) { return; }
-    let newCourse: Course = new Course(this.courseService.genId(this.courses), name, this.selectedItems, this.profilesDropdownSelected);
+    description = description.trim();
+    if (!name || !description) { return; }
+    let newCourse: Course = new Course(this.courseService.genId(this.courses), name, description, this.selectedItems, this.profilesDropdownSelected);
     //this.courses.push(newCourse);
-    newCourse = new Course(this.courseService.genId(this.courses), name, null, null);
+    newCourse = new Course(null, name, description, [] , null);
 
     this.courseService.addCourse(newCourse)
       .subscribe(course => {
-        this.courses.push(course);
+        this.getCourses();
       });
 
     //add the course to the profile

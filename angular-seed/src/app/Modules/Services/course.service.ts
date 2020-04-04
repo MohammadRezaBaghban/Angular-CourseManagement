@@ -28,7 +28,7 @@ export class CourseService {
         map( response => {
           let courses: Course[] = [];
           response.forEach(element => {
-            let newCourse: Course = new Course(element.id, element.name, element.teachers, null);
+            let newCourse: Course = new Course(element.id, element.name, element.des, element.teachers, null);
             courses.push(newCourse);
           })
           return courses;
@@ -42,7 +42,9 @@ export class CourseService {
   }
 
   addCourse (course: Course): Observable<Course> {
-    return this.http.post<Course>(this.coursesUrl, course, this.httpOptions).pipe(
+    let addCI: CourseInterface;
+    addCI = {id: null, name: course.name, des: course.des, teachers: []};
+    return this.http.post<Course>(this.coursesUrl, addCI, this.httpOptions).pipe(
       catchError(this.handleError<Course>('addCourse'))
     );
   }
