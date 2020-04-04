@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { COURSES } from '../Mock_Objects/mock-courses';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map } from "rxjs/operators";
+import { CdkFixedSizeVirtualScroll } from '@angular/cdk/scrolling';
 
 @Injectable({
   providedIn: 'root'
@@ -43,18 +44,21 @@ export class CourseService {
 
   addCourse (course: Course): Observable<Course> {
     let addCI: CourseInterface;
-    addCI = {id: null, name: course.name, des: course.des, teachers: []};
+    addCI = {id: null, name: course.name, des: course.des, teachers: course.teachers};
     return this.http.post<Course>(this.coursesUrl, addCI, this.httpOptions).pipe(
       catchError(this.handleError<Course>('addCourse'))
     );
   }
   
-  /*updateCourse (course: Course): Observable<any> {
-    return this.http.put(this.heroesUrl, course, this.httpOptions).pipe(
-      tap(_ => this.log(`updated hero id=${course.id}`)),
+  updateCourse (course: Course): Observable<any> {
+    const url = `${this.coursesUrl}/${course.id}`;
+    let upadateCI: CourseInterface;
+
+    upadateCI = {id: course.id, name: course.name, des: course.des, teachers: course.teachers};
+    return this.http.put(url, upadateCI, this.httpOptions).pipe(
       catchError(this.handleError<any>('updateHero'))
     );
-  }*/
+  }
 
   deleteCourse (course: Course): Observable<Course> {
     const url = `${this.coursesUrl}/${course.id}`;

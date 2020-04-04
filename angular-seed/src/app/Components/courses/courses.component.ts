@@ -32,6 +32,7 @@ export class CoursesComponent implements OnInit {
   updateSelectedItems = [];
   updateprofilesDropdownSelected = [];
   updateName: string;
+  updateDescription: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -79,6 +80,7 @@ export class CoursesComponent implements OnInit {
 
       if (this.selectedCourse != null) {
         this.updateName = this.selectedCourse.name;
+        this.updateDescription = this.selectedCourse.des;
 
         this.selectedCourse.teachers.forEach(element => {
           this.updateSelectedItems.push(element);
@@ -97,6 +99,7 @@ export class CoursesComponent implements OnInit {
     this.updateprofilesDropdownSelected = [];
 
     this.updateName = course.name;
+    this.updateDescription = course.des;
 
     course.teachers.forEach(element => {
       this.updateSelectedItems.push(element);
@@ -143,19 +146,19 @@ export class CoursesComponent implements OnInit {
     name = name.trim();
     description = description.trim();
     if (!name || !description) { return; }
-    let newCourse: Course = new Course(this.courseService.genId(this.courses), name, description, this.selectedItems, this.profilesDropdownSelected);
-    //this.courses.push(newCourse);
-    newCourse = new Course(null, name, description, [] , null);
+    let newCourse: Course = new Course(null, name, description, this.selectedItems, this.profilesDropdownSelected);
 
     this.courseService.addCourse(newCourse)
-      .subscribe(course => {
+      .subscribe(() => {
         this.getCourses();
+
+        //add the course to the profile
+        this.profilesDropdownSelected.forEach(element => {
+          (element as Profile).AddCourse(newCourse);
+        });
       });
 
-    //add the course to the profile
-    this.profilesDropdownSelected.forEach(element => {
-      (element as Profile).AddCourse(newCourse);
-    });
+    
 
     this.selectedItems = [];
     this.profilesDropdownSelected = [];
@@ -164,13 +167,14 @@ export class CoursesComponent implements OnInit {
   update(course: Course): void {
     let courseToUpdate = this.courses.find(element => element.id == course.id);
     courseToUpdate.name = this.updateName;
+    courseToUpdate.des = this.updateDescription;
     courseToUpdate.teachers = this.updateSelectedItems;
     courseToUpdate.profiles = this.updateprofilesDropdownSelected;
 
     //TODO: update the profile when changes are applied to the course.profile.
 
-    /*this.courseService.updateCourse(course)
-     .subscribe(() => this.goBack());*/
+    this.courseService.updateCourse(courseToUpdate)
+     .subscribe(() => this.getCourses());
   }
 
   delete(course: Course): void {
