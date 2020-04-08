@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../Modules/user';
 import { UserService } from '../../Modules/Services/user.service';
 import { Role } from '../../Modules/role';
-import { RoleServiceService } from '../../Modules/Services/role-service.service';
+import { RoleService } from '../../Modules/Services/role-service.service';
 
 @Component({
   selector: 'app-users',
@@ -24,7 +24,7 @@ export class UsersComponent implements OnInit {
   updateLastName: string;
   updatedob: string;
 
-  constructor(private userService: UserService, private roleService: RoleServiceService) { }
+  constructor(private userService: UserService, private roleService: RoleService) { }
 
   ngOnInit(): void {
     this.getUsers();

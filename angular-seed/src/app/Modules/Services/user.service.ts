@@ -5,6 +5,7 @@ import { USERS } from '../Mock_Objects/mock-users';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map } from "rxjs/operators";
 import { Role } from "../role";
+import { RoleService} from "../Services/role-service.service"
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class UserService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor( private http: HttpClient) { }
+  constructor( private http: HttpClient, private roleSerive : RoleService) { }
 
   getUsers(): Observable<User[]> {
     //return of(USERS);
@@ -28,8 +29,10 @@ export class UserService {
         map( response => {
           let users: User[] = [];
           response.forEach(element => {
-            let newCourse: User = new User(element.id, new Role(+element.roleId, "To be implemented"), element.firstName, element.lastName, element.dateOfBirth);
-            users.push(newCourse);
+            let role : Role;
+            this.roleSerive.getRole(parseInt(element.roleId)).subscribe(r => role=r);
+            let newUser: User = new User(element.id, role, element.firstName, element.lastName, element.dateOfBirth);
+            users.push(newUser);
           })
           return users;
         })

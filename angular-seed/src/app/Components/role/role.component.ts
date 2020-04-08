@@ -1,6 +1,6 @@
 import { Component, OnInit, } from '@angular/core';
 import { Role } from '../../Modules/role';
-import { RoleServiceService } from '../../Modules/Services/role-service.service';
+import { RoleService } from '../../Modules/Services/role-service.service';
 
 @Component({
   selector: 'app-role',
@@ -12,7 +12,7 @@ export class RoleComponent implements OnInit {
   roles: Array<Role>;
   selectedRole: Role;
 
-  constructor(private roleService: RoleServiceService) {
+  constructor(private roleService: RoleService) {
   }
 
 
@@ -41,7 +41,7 @@ export class RoleComponent implements OnInit {
 
   AddRole(roleName: string, roleId: number): void {
     if (!this.roles.find(role => role.Id === roleId) && !this.roles.find(role => role.RoleName === roleName)) {
-      this.roles.push(new Role(roleId, roleName));
+      this.roles.push(new Role(roleId, roleName,"",0));
     } else {
       alert("There is another role with the same name or id");
     }

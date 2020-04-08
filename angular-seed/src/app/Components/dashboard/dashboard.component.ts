@@ -4,7 +4,7 @@ import { CourseService } from '../../Modules/Services/course.service';
 import { User } from '../../Modules/user';
 import { UserService } from '../../Modules/Services/user.service';
 import { Role } from '../../Modules/role';
-import { RoleServiceService } from '../../Modules/Services/role-service.service';
+import { RoleService } from '../../Modules/Services/role-service.service';
 import { Profile } from '../../Modules/profile';
 import { ProfileServiceService } from '../../Modules/Services/profile-service.service';
 
@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private courseService: CourseService,
     private userService: UserService,
-    private roleService: RoleServiceService,
+    private roleService: RoleService,
     private profileService: ProfileServiceService
   ) { }
 
