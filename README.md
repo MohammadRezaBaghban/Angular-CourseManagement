@@ -17,4 +17,3 @@ web2.i427065.hera.fhict.nl
 *  Class inheritance Employee - Role
 *  Routing by ID in URL
 *  Angular material side menu, cards
-*  
