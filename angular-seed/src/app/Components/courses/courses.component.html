@@ -54,37 +54,38 @@
       </div>
     </div>
     <div class="col-4">
-      <h2>Add new course</h2>
-      <div>
-        <label>Course name:
-          <input #courseName />
-        </label>
-        <br>
-        <label>Course description:
-          <input #courseDes />
-        </label>
-        <br><br>
-        <angular2-multiselect [data]="dropdownList" [(ngModel)]="selectedItems" [settings]="dropdownSettings">
-          <c-item>
-            <ng-template let-item="item">
-              <label>{{item.first_name}} {{item.last_name}}</label>
-            </ng-template>
-          </c-item>
-        </angular2-multiselect>
-        <br>
-        <angular2-multiselect [data]="profilesDropdownList" [(ngModel)]="profilesDropdownSelected"
-          [settings]="profilesDropdownSettings">
-        </angular2-multiselect>
-        <br>
-        <!-- (click) passes input value to add() and then clears the input -->
-        <button type="button" class="btn btn-primary"
-          (click)="add(courseName.value, courseDes.value); courseName.value=''; courseDes.value=''">
-          Add Course
-        </button>
-      </div>
-      
-      <div *ngIf="selectedCourse">
-        <hr>
+      <mat-card>
+        <h2>Add new course</h2>
+        <div>
+          <label>Course name:
+            <input #courseName />
+          </label>
+          <br>
+          <label>Course description:
+            <input #courseDes />
+          </label>
+          <br><br>
+          <angular2-multiselect [data]="dropdownList" [(ngModel)]="selectedItems" [settings]="dropdownSettings">
+            <c-item>
+              <ng-template let-item="item">
+                <label>{{item.first_name}} {{item.last_name}}</label>
+              </ng-template>
+            </c-item>
+          </angular2-multiselect>
+          <br>
+          <angular2-multiselect [data]="profilesDropdownList" [(ngModel)]="profilesDropdownSelected"
+            [settings]="profilesDropdownSettings">
+          </angular2-multiselect>
+          <br>
+          <!-- (click) passes input value to add() and then clears the input -->
+          <button type="button" class="btn btn-primary"
+            (click)="add(courseName.value, courseDes.value); courseName.value=''; courseDes.value=''">
+            Add Course
+          </button>
+        </div>
+      </mat-card>
+      <br>
+      <mat-card *ngIf="selectedCourse">
         <h2>{{selectedCourse.name | uppercase}} Details</h2>
         <div><span>ID: </span>{{selectedCourse.id}}</div>
         <div>
@@ -117,7 +118,7 @@
         </div>
         <button type="button" class="btn btn-success" (click)="update(selectedCourse)">Update</button>
         <button type="button" class="btn btn-danger" (click)="delete(selectedCourse)">Delete course</button>
-      </div>
+      </mat-card>
       <br><br>
     </div>
   </div>

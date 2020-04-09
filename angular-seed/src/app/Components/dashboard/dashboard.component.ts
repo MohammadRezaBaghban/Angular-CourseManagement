@@ -35,16 +35,16 @@ export class DashboardComponent implements OnInit {
 
   getRoles(): void {
     this.roleService.getRoles()
-      .subscribe(roles => this.roles = roles.slice(1, 4));
+      .subscribe(roles => this.roles = roles.slice(0, 3));
   }
 
   getCourses(): void {
     this.courseService.getCourses()
-      .subscribe(courses => this.courses = courses.slice(1, 5));
+      .subscribe(courses => this.courses = courses.slice(0, 3));
   }
   getUsers(): void {
     this.userService.getUsers()
-      .subscribe(users => this.users = users.slice(1, 4));
+      .subscribe(users => this.users = users.slice(0, 3));
   }
 
   getProfiles(): void {
