@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Role } from 'src/app/Modules/role';
+import { RoleService } from '../../../Modules/Services/role-service.service';
 
 @Component({
   selector: 'app-role-detail',
@@ -11,7 +12,7 @@ export class RoleDetailComponent implements OnInit {
   @Input() selectedRole: Role;
   @Input() roles: Array<Role>;
 
-  constructor() { }
+  constructor(private roleService: RoleService) { }
 
 
   onDelete(role: Role): void {
@@ -21,6 +22,10 @@ export class RoleDetailComponent implements OnInit {
 
   clearSelectedRole() {
     this.selectedRole = null;
+  }
+
+  updateRole(selectedRole: Role):void{
+    this.roleService.UpdateRole(selectedRole).subscribe(() => this.clearSelectedRole());
   }
 
   ngOnInit(): void {

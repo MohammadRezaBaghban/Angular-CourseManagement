@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getRoles(): void {
-    this.roleService.getRoles()
+    this.roleService.GetRoles()
       .subscribe(roles => this.roles = roles.slice(0, 4));
   }
 

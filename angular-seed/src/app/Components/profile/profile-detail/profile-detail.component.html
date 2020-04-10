@@ -35,9 +35,9 @@
                 <td>{{selectedProfile.profileOwner.dob}}</td>
             </tr>
         </table>
-        <button title="Delete Profile" (click)="onDelete(selectedProfile)">
-            Delete Role
+        <button class="btn btn-danger" title="Delete Profile" (click)="onDelete(selectedProfile)">
+            Delete Profile
         </button>
-        <button (click)="clearSelectedProfile()">Hide Detail Panel</button>
+        <button class="btn btn-success" (click)="clearSelectedProfile()">Hide Detail Panel</button>
     </div>
 </div>

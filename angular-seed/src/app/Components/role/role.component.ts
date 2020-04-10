@@ -16,8 +16,8 @@ export class RoleComponent implements OnInit {
   }
 
 
-  getHeros(): void {
-    this.roleService.getRoles().subscribe(roles => this.roles = roles);
+  getRoles(): void {
+    this.roleService.GetRoles().subscribe(roles => this.roles = roles);
   }
 
   onSelect(role: Role): void {
@@ -34,7 +34,7 @@ export class RoleComponent implements OnInit {
         role => role.RoleName.toUpperCase().startsWith(term.toUpperCase()));
     }
     else {
-      this.getHeros();
+      this.getRoles();
     }
   }
 
@@ -51,7 +51,7 @@ export class RoleComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getHeros();
+    this.getRoles();
   }
 
 }

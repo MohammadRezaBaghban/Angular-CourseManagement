@@ -5,8 +5,10 @@
   <input #searchBox id="search-box" (input)="search(searchBox.value)" />
   <br><br>
   <hr>
-  <div class="table-responsive">
-      <!-- <div class="head">ID</div>
+  <div class="row">
+    <div class="col-8">
+      <div class="table-responsive">
+        <!-- <div class="head">ID</div>
       <div class="head">Name</div>
       <div class="head">Teachers</div>
       <div class="head">Profiles</div>
@@ -26,100 +28,98 @@
           </div>
           <div class="line"></div>
       </ng-container> -->
-  
-      <table class="table table-bordered table-dark">
-        <tr style="background-color:#81017B ;">
-          <th scope="col">ID</th>
-          <th scope="col">Name</th>
-          <th scope="col">Description</th>
-          <th scope="col">Teachers</th>
-          <th scope="col">Profiles</th>
-        </tr>
-        <tr class="selectedRow" *ngFor="let course of displayCourses " [class.selected]="course === selectedCourse"
-          (click)="onSelect(course)">
-          <th scope="row">{{course.id}}</th>
-          <td>{{course.name}}</td>
-          <td>{{course.des}}</td>
-          <td ><ng-container *ngFor="let teacher of course.teachers" >{{teacher.first_name}} {{teacher.last_name}} ,</ng-container></td>
-          <td ><ng-container *ngFor="let profile of course.profiles" >{{profile.profileName}} ,</ng-container></td>
-        </tr>
-      </table>
-  </div>
-  <br><br>
-  <hr>
-  <h2>Add new course</h2>
-  <div>
-      <label>Course name:
-        <input #courseName />
-      </label>
-      <br>
-      <label>Course description:
-        <input #courseDes />
-      </label>
-      <br><br>
-      <angular2-multiselect 
-        [data]="dropdownList" 
-        [(ngModel)]="selectedItems" 
-        [settings]="dropdownSettings" >
-        <c-item>
-          <ng-template let-item="item">
-            <label>{{item.first_name}} {{item.last_name}}</label>
-          </ng-template>
-        </c-item>  
-      </angular2-multiselect>
-      <br>
-      <angular2-multiselect 
-        [data]="profilesDropdownList" 
-        [(ngModel)]="profilesDropdownSelected" 
-        [settings]="profilesDropdownSettings" >
-      </angular2-multiselect>
-      <br>
-      <!-- (click) passes input value to add() and then clears the input -->
-      <button type="button" class="btn btn-primary" (click)="add(courseName.value, courseDes.value); courseName.value=''; courseDes.value=''">
-        Add Course
-      </button>
-  </div>
-  <hr>
-  <div *ngIf="selectedCourse">
-      <h2>{{selectedCourse.name | uppercase}} Details</h2>
-      <div><span>ID: </span>{{selectedCourse.id}}</div>
-      <div>
-        <label>Name:
-          <input placeholder="name" [(ngModel)]="updateName"/>
-        </label>
+
+        <table class="table table-bordered table-dark">
+          <tr style="background-color:#81017B ;">
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Teachers</th>
+            <th scope="col">Profiles</th>
+          </tr>
+          <tr class="selectedRow" *ngFor="let course of displayCourses " [class.selected]="course === selectedCourse"
+            (click)="onSelect(course)">
+            <th scope="row">{{course.id}}</th>
+            <td>{{course.name}}</td>
+            <td>{{course.des}}</td>
+            <td>
+              <ng-container *ngFor="let teacher of course.teachers">{{teacher.first_name}} {{teacher.last_name}} ,
+              </ng-container>
+            </td>
+            <td>
+              <ng-container *ngFor="let profile of course.profiles">{{profile.profileName}} ,</ng-container>
+            </td>
+          </tr>
+        </table>
       </div>
-      <div>
-        <label>Description:
-          <input placeholder="description" [(ngModel)]="updateDescription"/>
-        </label>
-      </div>
-      <div>
-        <label>Teachers:
-          <angular2-multiselect 
-            [data]="dropdownList" 
-            [(ngModel)]="updateSelectedItems" 
-            [settings]="dropdownSettings" >
+    </div>
+    <div class="col-4">
+      <mat-card>
+        <h2>Add new course</h2>
+        <div>
+          <label>Course name:
+            <input #courseName />
+          </label>
+          <br>
+          <label>Course description:
+            <input #courseDes />
+          </label>
+          <br><br>
+          <angular2-multiselect [data]="dropdownList" [(ngModel)]="selectedItems" [settings]="dropdownSettings">
             <c-item>
               <ng-template let-item="item">
                 <label>{{item.first_name}} {{item.last_name}}</label>
               </ng-template>
-            </c-item>  
+            </c-item>
           </angular2-multiselect>
-        </label>
-      </div>
-      <div>
-        <label>Profiles:
-          <angular2-multiselect 
-            [data]="profilesDropdownList" 
-            [(ngModel)]="updateprofilesDropdownSelected" 
-            [settings]="profilesDropdownSettings" >
+          <br>
+          <angular2-multiselect [data]="profilesDropdownList" [(ngModel)]="profilesDropdownSelected"
+            [settings]="profilesDropdownSettings">
           </angular2-multiselect>
-        </label>
-      </div>
-      <button type="button" class="btn btn-success"
-              (click)="update(selectedCourse)">Update</button>
-      <button type="button" class="btn btn-danger"
-              (click)="delete(selectedCourse)">Delete course</button>
+          <br>
+          <!-- (click) passes input value to add() and then clears the input -->
+          <button type="button" class="btn btn-primary"
+            (click)="add(courseName.value, courseDes.value); courseName.value=''; courseDes.value=''">
+            Add Course
+          </button>
+        </div>
+      </mat-card>
+      <br>
+      <mat-card *ngIf="selectedCourse">
+        <h2>{{selectedCourse.name | uppercase}} Details</h2>
+        <div><span>ID: </span>{{selectedCourse.id}}</div>
+        <div>
+          <label>Name:
+            <input placeholder="name" [(ngModel)]="updateName" />
+          </label>
+        </div>
+        <div>
+          <label>Description:
+            <input placeholder="description" [(ngModel)]="updateDescription" />
+          </label>
+        </div>
+        <div>
+          <label>Teachers:
+            <angular2-multiselect [data]="dropdownList" [(ngModel)]="updateSelectedItems" [settings]="dropdownSettings">
+              <c-item>
+                <ng-template let-item="item">
+                  <label>{{item.first_name}} {{item.last_name}}</label>
+                </ng-template>
+              </c-item>
+            </angular2-multiselect>
+          </label>
+        </div>
+        <div>
+          <label>Profiles:
+            <angular2-multiselect [data]="profilesDropdownList" [(ngModel)]="updateprofilesDropdownSelected"
+              [settings]="profilesDropdownSettings">
+            </angular2-multiselect>
+          </label>
+        </div>
+        <button type="button" class="btn btn-success" (click)="update(selectedCourse)">Update</button>
+        <button type="button" class="btn btn-danger" (click)="delete(selectedCourse)">Delete course</button>
+      </mat-card>
+      <br><br>
+    </div>
   </div>
-  <br><br>
 </div>

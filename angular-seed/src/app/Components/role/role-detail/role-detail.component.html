@@ -1,3 +1,4 @@
+
 <table *ngIf="selectedRole" class="table table-bordered table-dark">
     <tr style="background-color: gray;">
         <td colspan="4">
@@ -33,6 +34,7 @@
     </tr>
     <tr>
         <td colspan="4">
+            <button (click)="updateRole(selectedRole)"> Update Role </button>
             <button title="Delete Role" (click)="onDelete(selectedRole)"> Delete Role </button>
             <button (click)="clearSelectedRole()"> Hide Panel </button>
         </td>

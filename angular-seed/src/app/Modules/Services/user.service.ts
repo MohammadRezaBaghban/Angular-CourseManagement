@@ -30,7 +30,7 @@ export class UserService {
           let users: User[] = [];
           response.forEach(element => {
             let role : Role;
-            this.roleSerive.getRole(parseInt(element.roleId)).subscribe(r => role=r);
+            this.roleSerive.GetRole(parseInt(element.roleId)).subscribe(r => role=r);
             let newUser: User = new User(element.id, role, element.firstName, element.lastName, element.dateOfBirth);
             users.push(newUser);
           })

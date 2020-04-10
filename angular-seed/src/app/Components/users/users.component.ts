@@ -45,8 +45,12 @@ export class UsersComponent implements OnInit {
   
   onSelect(user: User): void {
     this.updateSelectedItem = [];
-
-    this.selectedUser = user;
+    if(this.selectedUser === user){
+      this.selectedUser = null;
+    }else{
+      this.selectedUser=user
+    }
+    
 
     this.updateSelectedItem.push(user.role);
     console.log(this.updateSelectedItem.length);
@@ -102,7 +106,7 @@ export class UsersComponent implements OnInit {
 
   getRoles(): Role[]{
     let rolesList: Role[];
-    this.roleService.getRoles()
+    this.roleService.GetRoles()
         .subscribe(roles => rolesList = roles);
     return rolesList;
   } 
