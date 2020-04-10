@@ -9,7 +9,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class RoleService {
+export class RoleServiceService {
   
   
 

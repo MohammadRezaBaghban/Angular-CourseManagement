@@ -4,7 +4,7 @@ import { CourseService } from '../../Modules/Services/course.service';
 import { User } from '../../Modules/user';
 import { UserService } from '../../Modules/Services/user.service';
 import { Role } from '../../Modules/role';
-import { RoleService } from '../../Modules/Services/role-service.service';
+import { RoleServiceService } from '../../Modules/Services/role-service.service';
 import { Profile } from '../../Modules/profile';
 import { ProfileServiceService } from '../../Modules/Services/profile-service.service';
 
@@ -19,10 +19,11 @@ export class DashboardComponent implements OnInit {
   roles: Role[] = [];
   profiles: Profile[] = [];
   selectedProfile: Profile;
+  selectedRole: Role;
 
   constructor(private courseService: CourseService,
     private userService: UserService,
-    private roleService: RoleService,
+    private roleService: RoleServiceService,
     private profileService: ProfileServiceService
   ) { }
 
@@ -57,6 +58,14 @@ export class DashboardComponent implements OnInit {
       this.selectedProfile = null;
     }else{
       this.selectedProfile = profile;
+    }
+  }
+
+  onRoleSelect(role: Role): void {
+    if(role==this.selectedRole){
+      this.selectedRole = null;
+    }else{
+      this.selectedRole = role;
     }
   }
 }

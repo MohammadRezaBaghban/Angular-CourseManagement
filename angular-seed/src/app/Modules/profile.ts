@@ -4,15 +4,18 @@ import { User } from 'src/app/Modules/user';
 
 export class Profile {
 
+    profileId : number;
     profileName: string;
-    profileAbbreviation: string;
+    profileDescription: string;
     containingCourse: Array<Course> = [];
     profileOwner: User;
 
 
-    constructor(name: string, abbreviation: string, owner: User) {
+    constructor(id:number,name: string, abbreviation: string, owner: User) {
+       
         this.profileName = name;
-        this.profileAbbreviation = abbreviation;
+        this.profileId = id;
+        this.profileDescription = abbreviation;
         this.profileOwner = owner;
 
     }
@@ -31,5 +34,11 @@ export class Profile {
             return false;
         }
     }
+}
 
+export interface ProfileInterface{
+    id:number,
+    name:string,
+    des:string,
+    owner: string
 }

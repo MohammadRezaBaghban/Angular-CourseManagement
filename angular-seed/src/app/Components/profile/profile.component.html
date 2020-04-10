@@ -1,19 +1,26 @@
 <div class="container">
     <hr>
-    <h4>
-        <label for="search-box"> Profile Name Search </label> <span> </span>
-        <input #searchBox id="search-box" (input)="search(searchBox.value)" />
-    </h4>
-
     <table>
         <tr>
             <table class="table table-bordered table-dark">
+                <tr>
+                    <td colspan="4"> 
+                        <label style="margin: 3mm;" for="search-box"> Role Name Search </label> <span> </span>
+                        <input style="margin: 3mm;" #searchBox id="search-box" (input)="search(searchBox.value)" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Profile Name</td>
+                    <td>Profile Description</td>
+                    <td>Profile Owner</td>
+                    <td>Containing Courses</td>
+                </tr>
                 <tr class="selectedRow" *ngFor="let profile of profiles " [class.selected]="profile === selectedProfile"
                     (click)="onSelect(profile)">
-                    <th scope="row">{{profile.profileAbbreviation}}</th>
-                    <td>{{profile.profileName}} | Owner:
-                        {{profile.profileOwner.first_name}} {{profile.profileOwner.last_name}} | Nr of Courses:
-                        {{profile.containingCourse.length}}</td>
+                    <th>{{profile.profileName}}</th>
+                    <td scope="row">{{profile.profileDescription}}</td>              
+                    <td>{{profile.profileOwner.first_name}} {{profile.profileOwner.last_name}}</td>
+                    <td></td>
                 </tr>
             </table>
         </tr>

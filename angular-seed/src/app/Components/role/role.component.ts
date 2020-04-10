@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, } from '@angular/core';
 import { Role } from '../../Modules/role';
-import { RoleService } from '../../Modules/Services/role-service.service';
+import { RoleServiceService } from '../../Modules/Services/role-service.service';
 
 @Component({
   selector: 'app-role',
@@ -12,7 +12,7 @@ export class RoleComponent implements OnInit {
   @Input() roles: Array<Role>;
   @Input() selectedRole: Role;
 
-  constructor(private roleService: RoleService) {
+  constructor(private roleService: RoleServiceService) {
   }
 
 

@@ -1,105 +1,112 @@
 <div class="container">
   <table>
     <tr>
-      <table class="table">
-        <tr>
-          <td colspan="4">
-            <h1>Recently Added / Updated</h1>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <table>
-              <tr>
-                <h2>Profiles</h2>
-              </tr>
-              <tr *ngFor="let profile of profiles" routerLink="/detail/{{profile.id}}"
-              (click)="onProfileSelect(profile)">
-                <td >
-                  <div>
+      <td>
+        <table class="table">
+          <tr>
+            <td colspan="4">
+              <h1>Recently Added / Updated</h1>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <table>
+                <tr>
+                  <h2>Profiles</h2>
+                </tr>
+                <tr *ngFor="let profile of profiles" routerLink="/detail/{{profile.id}}"
+                (click)="onProfileSelect(profile)">
+                  <td >
                     <div>
-                        <a>
-                          <div class="module profile">
-                            <h4>{{profile.profileAbbreviation}} - {{profile.profileName}}</h4>
-                          </div>
-                        </a>
+                      <div>
+                          <a>
+                            <div class="module profile">
+                              <h4>{{profile.profileName}}</h4>
+                            </div>
+                          </a>
+                      </div>
                     </div>
-                  </div>
-                </td>
-              </tr>
-            </table>
-          </td>
-          <td>
-            <table>
-              <tr>
-                <h2>Courses</h2>
-              </tr>
-              <tr *ngFor="let course of courses">
-                <td>
-                  <div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td>
+              <table>
+                <tr>
+                  <h2>Courses</h2>
+                </tr>
+                <tr *ngFor="let course of courses">
+                  <td>
                     <div>
-                        <a>
-                          <div class="module course">
-                            <h4>{{course.name}}</h4>
-                          </div>
-                        </a>
+                      <div>
+                          <a>
+                            <div class="module course">
+                              <h4>{{course.name}}</h4>
+                            </div>
+                          </a>
+                      </div>
                     </div>
-                  </div>
-                </td>
-              </tr>
-            </table>
-          </td>
-          <td>
-            <table>
-              <tr>
-                <h2>Users</h2>
-              </tr>
-              <tr *ngFor="let user of users">
-                <td>
-                  <div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td>
+              <table>
+                <tr>
+                  <h2>Users</h2>
+                </tr>
+                <tr *ngFor="let user of users">
+                  <td>
                     <div>
-                        <a>
-                          <div class="module user">
-                            <h4>{{user.first_name}}{{user.last_name}}</h4>
-                          </div>
-                        </a>
+                      <div>
+                          <a>
+                            <div class="module user">
+                              <h4>{{user.first_name}} {{user.last_name}}</h4>
+                            </div>
+                          </a>
+                      </div>
                     </div>
-                  </div>
-                </td>
-              </tr>
-            </table>
-          </td>
-          <td>
-            <table>
-              <tr>
-                <h2>Roles</h2>
-              </tr>
-              <tr *ngFor="let role of roles">
-                <td>
-                  <div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td>
+              <table>
+                <tr>
+                  <h2>Roles</h2>
+                </tr>
+                <tr *ngFor="let role of roles"
+                (click)="onRoleSelect(role)">
+                  <td>
                     <div>
-                        <a>
-                          <div class="module role">
-                            <h4>{{role.RoleName}}</h4>
-                          </div>
-                        </a>
+                      <div>
+                          <a>
+                            <div class="module role">
+                              <h4>{{role.RoleName}}</h4>
+                            </div>
+                          </a>
+                      </div>
                     </div>
-                  </div>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
     </tr>
     <tr>
-      <table>
-        <tr>
-          <td *ngIf="selectedProfile">
+      <table align="center">
+        <tr *ngIf="selectedProfile">
+          <td>
             <app-profile-detail [selectedProfile]="selectedProfile" [profiles]="profiles"></app-profile-detail>
+          </td>
+          <td *ngIf="selectedRole">
+            <app-role-detail [selectedRole]="selectedRole" [roles]="selectedRole"></app-role-detail>
           </td>
         </tr>
         </table>
     </tr>
   </table>
 </div>
+

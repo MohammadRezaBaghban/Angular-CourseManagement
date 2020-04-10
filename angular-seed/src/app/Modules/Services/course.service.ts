@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Course, CourseInterface } from '../course';
 import { Observable, of } from 'rxjs';
-import { COURSES } from '../Mock_Objects/mock-courses';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map } from "rxjs/operators";
 import { ProfileCourseService } from './profile-course.service'
