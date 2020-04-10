@@ -1,4 +1,4 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit, Input, } from '@angular/core';
 import { Role } from '../../Modules/role';
 import { RoleService } from '../../Modules/Services/role-service.service';
 
@@ -9,8 +9,8 @@ import { RoleService } from '../../Modules/Services/role-service.service';
 })
 export class RoleComponent implements OnInit {
 
-  roles: Array<Role>;
-  selectedRole: Role;
+  @Input() roles: Array<Role>;
+  @Input() selectedRole: Role;
 
   constructor(private roleService: RoleService) {
   }
@@ -38,16 +38,10 @@ export class RoleComponent implements OnInit {
     }
   }
 
-
-  AddRole(roleName: string, roleId: number): void {
-    if (!this.roles.find(role => role.Id === roleId) && !this.roles.find(role => role.RoleName === roleName)) {
-      this.roles.push(new Role(roleId, roleName,"",0));
-    } else {
-      alert("There is another role with the same name or id");
-    }
+  AddRole(roleName: string, roleDescription:string ,roleFTE: number): void {
+    let newRole: Role = new Role(null,roleName, roleDescription,roleFTE);
+    this.roleService.AddRole(newRole).subscribe(()=>this.getRoles());
   }
-
-
 
 
   ngOnInit(): void {

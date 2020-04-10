@@ -11,6 +11,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class RoleService {
   
+  
 
   //URL to web API
   private roleUrl = "https://aimchatbot.herokuapp.com:443/role";
@@ -22,6 +23,7 @@ export class RoleService {
 
   constructor(private http:HttpClient) { }
 
+  //Get list of Role
   public GetRoles(): Observable<Role[]> {
 
     return this.http.get<RoleInterface[]>(this.roleUrl).pipe(
@@ -38,6 +40,7 @@ export class RoleService {
     );
   }
 
+  //Get Specific Role
   public GetRole(id:number) : Observable<Role>{
 
      let roleResource = `${this.roleUrl}/${id}`;
@@ -63,6 +66,22 @@ export class RoleService {
       tap(_ => console.log(`updated role id=${role.Id}`)),
       catchError(this.handleError<any>('UpdateRole'))
     );
+  }
+
+  // POST role on the Server 
+  public AddRole(role:Role): Observable<any>{
+    let newRole = {name:role.RoleName,des:role.Description,fte:role.FTE};
+    return this.http.post<Role>(this.roleUrl,newRole,this.httpOptions).pipe(
+      catchError(this.handleError<Role>('AddRole'))
+    )
+  }
+
+  // Delete role on the Server 
+  public DeleteRole(role:Role): Observable<any>{
+    const url = `${this.roleUrl}/${role.Id}`;
+    return this.http.delete<Role>(url,this.httpOptions).pipe(
+      catchError(this.handleError<Role>('Delete Role'))
+    )
   }
 
   /**

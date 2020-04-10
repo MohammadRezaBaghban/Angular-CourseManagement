@@ -1,61 +1,107 @@
 <div class="container">
     <hr>
-    <div>
-        <h1>Roles</h1>
-        <h4>
-            <label for="search-box"> Role Name Search </label> <span> </span>
-            <input #searchBox id="search-box" (input)="search(searchBox.value)" />
-        </h4>
 
-        <table class="table table-bordered table-dark">
-            <tr>
-                <td>
-                    <b>ID</b>
-                </td>
-                <td>
-                    <b>Name</b>
-                </td>
-                <td>
-                    <b>Description</b>
-                </td>
-                <td>
-                    <b>FTE Workload</b>
-                </td>
-            </tr>
-            <tr class="selectedRow" *ngFor="let role of roles" (click)="onSelect(role)"
-                [class.selected]="role === selectedRole">
-                <td>
-                    {{role.Id}}
-                </td>
-                <td>
-                    {{role.RoleName}}
-                </td>
-                <td>
-                    {{role.Description}}
-                </td>
-                <td>
-                    {{role.FTE}}
-                </td>
-            </tr>
-        </table>
-        <app-role-detail [selectedRole]="selectedRole" [roles]="roles"></app-role-detail>
-        <hr>
-    </div>
-    <div>
-        <h2>Add new role</h2>
-        <label>
-            Role Name:<input #roleName>
-        </label>
-    </div>
-    <div>
-        <label>
-            Role Id: <input #roleId>
-        </label>
-    </div>
-    <div>
-        <button type="button" class="btn btn-primary"
-            (click)="AddRole(roleName.value,roleId.value); roleName.value=''; roleId.value='';">
-            Add Role
-        </button>
+    <h1>Roles</h1>
+    <div class="row">
+        <div class="col-8">
+            <table class="table table-bordered table-dark">
+                <tr>
+                    <td colspan="4"> 
+                        <label style="margin: 3mm;" for="search-box"> Role Name Search </label> <span> </span>
+                        <input style="margin: 3mm;" #searchBox id="search-box" (input)="search(searchBox.value)" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>ID</b>
+                    </td>
+                    <td>
+                        <b>Name</b>
+                    </td>
+                    <td>
+                        <b>Description</b>
+                    </td>    
+                    <td>
+                        <b>FTE Workload</b>
+                    </td>
+                </tr>
+                <tr class="selectedRow" *ngFor="let role of roles" (click)="onSelect(role)"
+                    [class.selected]="role === selectedRole">
+                    <td>
+                        {{role.Id}}
+                    </td>
+                    <td>
+                        {{role.RoleName}}
+                    </td>
+                    <td>
+                        {{role.Description}}
+                    </td>    
+                    <td>
+                        {{role.FTE}}
+                    </td>           
+                </tr>
+            </table>
+        </div>
+        <div class="col-4">
+            <div>
+
+
+                <table class="table table-bordered table-dark">
+                    <tr align="center">
+                        <th colspan="2">
+                            <h2>Add new role</h2>
+                        </th>
+                    </tr>
+                    <tr align="center">
+                        <th>Fields</th>
+                        <th>Values</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>
+                                Role Name:
+                            </label>
+                        </td>
+                        <td>
+                            <input #roleName>
+                        </td>             
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>
+                                Role Description:
+                            </label>
+                        </td>
+                        <td>
+                            <input #roleDescription>
+                        </td>  
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>
+                                Role FTE:
+                            </label>
+                        </td>
+                        <td>
+                            <input #roleFTE>
+                        </td> 
+                    </tr>
+                    <tr align="center">
+                        <td colspan="2">
+                        <button type="button" class="btn btn-primary"
+                        (click)="AddRole(roleName.value,roleDescription.value,roleFTE.value);
+                        roleName.value='';
+                        roleDescription.value='';
+                        roleFTE.value=''; ">
+                        Add Role
+                        </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <hr>
+            <app-role-detail [selectedRole]="selectedRole" [roles]="roles"></app-role-detail>
+            
+        </div>
     </div>
 </div>
