@@ -1,22 +1,47 @@
+
 <table *ngIf="selectedRole" class="table table-bordered table-dark">
     <tr style="background-color: gray;">
-        <td colspan="3">
+        <th colspan="4">
             <h2 align="center">Selected Role</h2>
-        </td>
+        </th>
     </tr>
-    <tr git align="center">
+    
+    <tr>
+        <td>
+            <b>ID</b>
+        </td>
         <td>{{selectedRole.Id}}</td>
+    </tr>
+    <tr>
+        <td>
+            <b>Name</b>
+        </td>
         <td>
             <input [(ngModel)]="selectedRole.RoleName" placeholder="RoleName" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>Description</b>
+        </td>
+        <td>
+            <input [(ngModel)]="selectedRole.Description" placeholder="Description" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>FTE Workload</b>
         </td>
         <td>
             <input [(ngModel)]="selectedRole.FTE" placeholder="FTE" />
         </td>
-    </tr>
-    <tr>
-        <td colspan="3">
-            <button title="Delete Role" (click)="onDelete(selectedRole)"> Delete Role </button>
-            <button (click)="clearSelectedRole()"> Hide Panel </button>
+    </tr>        
+    
+    <tr style="border-collapse: true;" align="center">
+        <td colspan="4">
+            <button  style="margin: 3mm;" class="btn btn-success" (click)="updateRole(selectedRole)"> Update Role </button>
+            <button  style="margin: 3mm;" class="btn btn-danger" title="Delete Role" (click)="deleteRole(selectedRole)"> Delete Role </button>
+            <button  style="margin: 3mm;"class="btn btn-secondary"(click)="clearSelectedRole()"> Hide Panel </button>
         </td>
     </tr>
 </table>

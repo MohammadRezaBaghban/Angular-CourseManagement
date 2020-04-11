@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Profile } from '../../Modules/profile';
+import { Profile, ProfileCourseInterface } from '../../Modules/profile';
 import { ProfileServiceService } from '../../Modules/Services/profile-service.service';
 import { Course } from '../../Modules/course';
 import { CourseService } from '../../Modules/Services/course.service';
@@ -14,14 +14,28 @@ export class ProfileComponent implements OnInit {
   profiles: Array<Profile>;
   courses: Array<Course>;
   selectedProfile: Profile;
+  profileCourse: ProfileCourseInterface[];
   fetchData: boolean = false;
 
   constructor(private profileService: ProfileServiceService, private courseService: CourseService) {
 
   }
 
-  getProfiles(): void {
-    this.profileService.getProfiles().subscribe(profiles => this.profiles = profiles);
+  getProfiles():void{
+    this.profileService.getRawProfiles().subscribe(x=>this.profiles=x);
+  }
+
+  getCourses(): void {
+    this.courseService.getCourses()
+      .subscribe(courses => this.courses = courses.slice(0, 4));
+  }
+
+  getProfilesCourse():void{
+    this.profileService.getProfileCourse().subscribe(x=>this.profileCourse=x);
+  }
+
+  getProfileCourse(): void {
+
     this.courseService.getCourses().subscribe(courses => this.courses = courses);
 
     this.courses.forEach(element => {
@@ -29,9 +43,9 @@ export class ProfileComponent implements OnInit {
         this.addCourseToProfile(element, profile);
       })
     });
-
-
   }
+
+  
 
   search(term: string): void {
     if (term.length != 0) {
@@ -63,12 +77,27 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  MapProfileCourse():void{
+
+    this.profileCourse.forEach(element => {
+            
+      let profile : Profile = this.profiles.find(x=>x.profileId==element.profile);
+      let course : Course = this.courses.find(x=>x.id==element.course);
+
+      //course.AddProfile(profile);
+      profile.AddCourse(course);
+    });
+  }
+
 
   ngOnInit(): void {
-    if (!this.fetchData) {
-      this.getProfiles();
-      this.fetchData = true;
-    }
+    this.getCourses()
+    this.getProfiles()
+    this.getProfilesCourse();
+    
+    setTimeout(()=>{
+      this.MapProfileCourse();
+    },1000);
 
   }
 

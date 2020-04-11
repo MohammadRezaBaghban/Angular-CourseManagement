@@ -3,7 +3,6 @@ import { User } from '../../Modules/user';
 import { UserService } from '../../Modules/Services/user.service';
 import { Role } from '../../Modules/role';
 import { RoleServiceService } from '../../Modules/Services/role-service.service';
-import { element } from 'protractor';
 
 @Component({
   selector: 'app-users',
@@ -46,8 +45,12 @@ export class UsersComponent implements OnInit {
   
   onSelect(user: User): void {
     this.updateSelectedItem = [];
-
-    this.selectedUser = user;
+    if(this.selectedUser === user){
+      this.selectedUser = null;
+    }else{
+      this.selectedUser=user
+    }
+    
 
     this.updateSelectedItem.push(user.role);
     console.log(this.updateSelectedItem.length);
@@ -67,12 +70,20 @@ export class UsersComponent implements OnInit {
 
   getUsers(): void {
     this.userService.getUsers()
-      .subscribe(users => this.users = users);
+      .subscribe(users => {this.users = users; this.displayUsers = this.users;});
   }
+
   addUser(firstName: string, lastName: string, dob: string): void {
     if (!firstName && !lastName && !dob) { return; }
     let newUser: User = new User(this.userService.generateId(this.users), this.selectedItem[0], firstName, lastName, dob);
-    this.users.push(newUser);
+    //this.users.push(newUser);
+
+    this.userService.addUser(newUser)
+      .subscribe(() => {
+        this.getUsers();
+      });
+
+    this.selectedItem = [];
   }
 
   updateUser(user: User): void{
@@ -81,15 +92,21 @@ export class UsersComponent implements OnInit {
     userToUpdate.last_name = this.updateLastName;
     userToUpdate.dob = this.updatedob;
     userToUpdate.role = this.updateSelectedItem[0];
+
+    this.userService.updateUser(userToUpdate)
+     .subscribe(() => this.getUsers());
   }
 
   deleteUser(user: User): void {
     this.users.splice(this.users.indexOf(user), 1);
+    this.displayUsers = this.users;
+
+    this.userService.deleteUser(user).subscribe();
   }
 
   getRoles(): Role[]{
     let rolesList: Role[];
-    this.roleService.getRoles()
+    this.roleService.GetRoles()
         .subscribe(roles => rolesList = roles);
     return rolesList;
   } 

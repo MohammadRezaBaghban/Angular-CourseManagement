@@ -14,3 +14,18 @@ export class User {
     this.dob = dob;
   }
 }
+
+export interface UserInterface {
+  id: number;
+  roleId: string;
+  username: string;
+  email: string;
+  dateOfBirth: string;
+  signup_date: string;
+  last_seen_date: string;
+  firstName: string;
+  lastName: string;
+  mobile: string;
+  address: string;
+  postcode: string;
+}

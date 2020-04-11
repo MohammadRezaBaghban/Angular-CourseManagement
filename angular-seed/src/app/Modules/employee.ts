@@ -4,8 +4,7 @@ export class Employee extends Role {
 
     FTE: number;
 
-    constructor(id: number, roleName: string, fte: number = 1) {
-        super(id, roleName);
-        this.FTE = fte;
+    constructor(id: number, roleName: string, des:string, fte: number = 1) {
+        super(id, roleName,des,fte);
     }
 }
