@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Course } from '../../Modules/course';
 import { CourseService } from '../../Modules/Services/course.service';
 import { User } from '../../Modules/user';
 import { UserService } from '../../Modules/Services/user.service';
 import { Role } from '../../Modules/role';
 import { RoleServiceService } from '../../Modules/Services/role-service.service';
-import { Profile } from '../../Modules/profile';
+import { Profile, ProfileCourseInterface } from '../../Modules/profile';
 import { ProfileServiceService } from '../../Modules/Services/profile-service.service';
+import { Router, RouterEvent, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,10 +17,13 @@ import { ProfileServiceService } from '../../Modules/Services/profile-service.se
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  public destroyed = new Subject<any>();
+  initialRun: boolean = false;
   courses: Course[] = [];
   users: User[] = [];
   roles: Role[] = [];
   profiles: Profile[] = [];
+  profileCourse: ProfileCourseInterface[];
   selectedProfile: Profile;
   selectedRole: Role;
 
@@ -25,14 +31,22 @@ export class DashboardComponent implements OnInit {
     private userService: UserService,
     private roleService: RoleServiceService,
     private profileService: ProfileServiceService
-  ) { }
+  ) {}
 
   ngOnInit() {
+    
+
     this.getRoles();
     this.getCourses();
     this.getUsers();
     this.getProfiles();
+    this.getProfileCourse();
+    
+    setTimeout(()=>{
+      this.MapProfileCourse();
+    },1000);
   }
+
 
   getRoles(): void {
     this.roleService.GetRoles()
@@ -49,8 +63,23 @@ export class DashboardComponent implements OnInit {
   }
 
   getProfiles(): void {
-    this.profileService.getProfiles()
-      .subscribe(profiles => this.profiles = profiles.slice(0, 4));
+    this.profileService.getRawProfiles().subscribe(x=>this.profiles=x);
+  }
+
+  getProfileCourse():void{
+    this.profileService.getProfileCourse().subscribe(x=>this.profileCourse=x);
+  }
+
+  MapProfileCourse():void{
+
+    this.profileCourse.forEach(element => {
+            
+      let profile : Profile = this.profiles.find(x=>x.profileId==element.profile);
+      let course : Course = this.courses.find(x=>x.id==element.course);
+
+      //course.AddProfile(profile);
+      profile.AddCourse(course);
+    });
   }
 
   onProfileSelect(profile: Profile): void {

@@ -42,3 +42,10 @@ export interface ProfileInterface{
     des:string,
     owner: string
 }
+
+export interface ProfileCourseInterface{
+    id:number,
+    profile:number,
+    course:number,
+    date:string
+}

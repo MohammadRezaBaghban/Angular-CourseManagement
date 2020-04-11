@@ -97,8 +97,8 @@
     </tr>
     <tr>
       <table align="center">
-        <tr *ngIf="selectedProfile">
-          <td>
+        <tr>
+          <td *ngIf="selectedProfile"> 
             <app-profile-detail [selectedProfile]="selectedProfile" [profiles]="profiles"></app-profile-detail>
           </td>
           <td *ngIf="selectedRole">

@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Profile, ProfileInterface} from '../profile';
+import { Profile, ProfileInterface, ProfileCourseInterface} from '../profile';
 import { Profiles } from '../Mock_Objects/mock-profiles';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map,tap } from "rxjs/operators";
 import { User } from '../user';
+import { CourseService } from './course.service';
+import { Course } from '../course';
 
 @Injectable({
     providedIn: 'root'
@@ -14,6 +16,10 @@ export class ProfileServiceService {
 
 //URL to web API
 private profileURI = "https://aimchatbot.herokuapp.com:443/profile";
+private profileCourseURI = "https://aimchatbot.herokuapp.com:443/profile-course";
+profileCourse: ProfileCourseInterface[];
+profiles: Profile[];
+public courses: Course[];
 
 httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -21,10 +27,35 @@ httpOptions = {
 
 
 
-    constructor(private http:HttpClient) { }
+    constructor(private http:HttpClient, private courseService: CourseService) {        
+    }
+    
 
-    getProfiles(): Observable<Profile[]> {
+    //GET Methods.
+    getProfiles(): Profile[] {
 
+        this.getProfileCourse().subscribe(x=>this.profileCourse=x);
+        this.getRawProfiles().subscribe(x=>this.profiles=x);
+        this.courseService.getCourses().subscribe(course => this.courses=course);
+
+        setTimeout(()=>{
+            this.profileCourse.forEach(element => {
+            
+                let profile : Profile = this.profiles.find(x=>x.profileId==element.profile);
+                let course : Course = this.courses.find(x=>x.id==element.course);
+    
+                //course.AddProfile(profile);
+                profile.AddCourse(course);
+            })
+        },10)
+       
+
+        return this.profiles;
+
+    }
+
+    getRawProfiles(): Observable<Profile[]> {
+       this.getProfileCourse().subscribe();
         return this.http.get<ProfileInterface[]>(this.profileURI).pipe(
             tap(_ => console.log('fetched profiles')),
             catchError(this.handleError<Profile[]>('getProfiles', [])),
@@ -36,8 +67,22 @@ httpOptions = {
               })
               return profiles;
             })
+        );
+    }
+
+    getProfileCourse(): Observable<ProfileCourseInterface[]> {
+        return this.http.get<ProfileCourseInterface[]>(this.profileCourseURI).pipe(
+            tap(_ => console.log('fetched profilesCourses')),
+            catchError(this.handleError<Profile[]>('getProfilesCourses', [])),
+            map( response => {
+              let profiles: ProfileCourseInterface[] = [];
+              response.forEach(element => {
+                let newProfile: ProfileCourseInterface = {id:element.id,profile:element.profile,course:element.course,date:element.date};
+                profiles.push(newProfile);
+              })
+              return profiles;
+            })
           );
-        return of(Profiles);
     }
 
     // PUT role on the server

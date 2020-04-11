@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map } from "rxjs/operators";
 import { ProfileCourseService } from './profile-course.service'
+import { ProfileServiceService } from './profile-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,9 @@ export class CourseService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
   
-  constructor( private http: HttpClient, private profileCourseService: ProfileCourseService ) { }
+  constructor( private http: HttpClient, private profileCourseService: ProfileCourseService) { }
 
-  getCourse(id: number): Observable<Course> {
+    getCourse(id: number): Observable<Course> {
     //return of(COURSES.find(course => course.id === id));
 
     const url = `${this.coursesUrl}/${id}`;

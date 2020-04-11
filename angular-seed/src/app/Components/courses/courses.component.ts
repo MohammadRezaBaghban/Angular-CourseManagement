@@ -3,7 +3,7 @@ import { Course } from '../../Modules/course';
 import { CourseService } from '../../Modules/Services/course.service';
 import { User } from '../../Modules/user';
 import { UserService } from '../../Modules/Services/user.service';
-import { Profile } from '../../Modules/profile';
+import { Profile, ProfileCourseInterface } from '../../Modules/profile';
 import { ProfileServiceService } from '../../Modules/Services/profile-service.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -17,7 +17,9 @@ export class CoursesComponent implements OnInit {
   courses: Course[];
   displayCourses: Course[];
   selectedCourse: Course;
-
+  profileList: Profile[];
+  profileCourse: ProfileCourseInterface[];
+  
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
@@ -39,15 +41,19 @@ export class CoursesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.getCourses();
+    this.getProfiles();
+    this.getProfileCourse();
     let teachers: User[] = this.getTeachers();
-    let profiles: Profile[] = this.getProfiles();
+
+
 
     teachers.forEach(element => {
       this.dropdownList.push(element);
     });
 
-    profiles.forEach(element => {
+    this.profileList.forEach(element => {
       this.profilesDropdownList.push(element);
     });
 
@@ -70,7 +76,11 @@ export class CoursesComponent implements OnInit {
       enableSearchFilter: true
     };
 
+    setTimeout(()=>{
+      this.MapPorfilesToCourses();
+    },1000);
     const id = +this.route.snapshot.paramMap.get('id');
+
     if (id != 0) {
       this.courseService.getCourse(id)
         .subscribe(hero => this.selectedCourse = hero);
@@ -131,12 +141,24 @@ export class CoursesComponent implements OnInit {
     return usersList.filter(u => u.role.RoleName == 'Teacher');
   }
 
-  getProfiles(): Profile[] {
-    let profileList: Profile[];
-    this.profileService.getProfiles()
-      .subscribe(profiles => profileList = profiles);
+  getProfiles(): void {
 
-    return profileList;
+    this.profileService.getRawProfiles().subscribe(x=>this.profileList=x);
+  }
+
+  public getProfileCourse():void{
+    this.profileService.getProfileCourse().subscribe(x=>this.profileCourse=x);
+  }
+
+  public MapPorfilesToCourses(){
+
+
+    this.profileCourse.forEach(element => {
+      let profile : Profile = this.profileList.find(x=>x.profileId==element.profile);
+      let course : Course = this.courses.find(x=>x.id==element.course);
+
+      course.profiles.push(profile);
+    });
   }
 
   add(name: string, description: string): void {
